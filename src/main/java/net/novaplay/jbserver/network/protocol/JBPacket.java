@@ -1,0 +1,7 @@
+package net.novaplay.jbserver.network.protocol;
+
+public abstract class JBPacket {
+	
+	public abstract JBPacketIdentifier getIdentifier();
+	
+}
