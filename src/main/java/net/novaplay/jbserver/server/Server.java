@@ -37,9 +37,10 @@ public class Server {
 	private Network network = null;
 	private Logger logger = null;
 	
-	private HashMap<UUID,Player> players = new HashMap<UUID,Player>();
+
 	
 	private PluginManager pluginManager = null;
+	private PlayerManager playerManager = null;
 	
 	private ConsoleCommandSender commandSender = new ConsoleCommandSender();
 	private CommandMap commandMap = null;
@@ -89,6 +90,8 @@ public class Server {
 			}
 		});
 		
+		this.playerManager = new PlayerManager(this);
+		
 		int port1 = getPropertyInt("java-port",25565);
 		int port2 = getPropertyInt("bedrock-port",25565);
 		if(port1 == port2) {
@@ -117,9 +120,9 @@ public class Server {
 		scheduler = new ServerScheduler();
 
 		this.logger.info(Color.GREEN + "Loading all plugins");
-		pluginManager = new SimplePluginManager(this);
-		pluginManager.registerInterface(JavaPluginLoader.class);
-		pluginManager.loadPlugins(this.pluginPath);
+		this.pluginManager = new SimplePluginManager(this);
+		this.pluginManager.registerInterface(JavaPluginLoader.class);
+		this.pluginManager.loadPlugins(this.pluginPath);
 		enablePlugins();
 
 		this.properties.save(true);
@@ -142,6 +145,7 @@ public class Server {
 		}));
 		start();
 	}
+	
 	
 	public void enablePlugins() {
 		for (Plugin plugin : getPluginManager().getPlugins().values()) {
@@ -187,8 +191,15 @@ public class Server {
 	
 	public Logger getLogger() { return this.logger; }
 	public static Server getInstance() { return instance; }
-	public ServerScheduler getScheduler() { return scheduler; }
-	public PluginManager getPluginManager() { return pluginManager; }
+	
+	/**
+	 * 
+	 * @Managers
+	 */
+	
+	public ServerScheduler getScheduler() { return this.scheduler; }
+	public PluginManager getPluginManager() { return this.pluginManager; }
+	public PlayerManager getPlayerManager() { return this.playerManager; }
 	
 	public String getVersion() { return JBMain.VERSION;}
 	public String getApiVersion() { return JBMain.API_VERSION;}
@@ -200,17 +211,7 @@ public class Server {
 		return this.getPropertyString("server-ip");
 	}
 	
-	public int getPlayerCount() {
-		return getOnlinePlayers().size();
-	}
-	
-	public HashMap<UUID,Player> getOnlinePlayers(){
-		return this.players;
-	}
-	
-	public int getMaximalPlayerCount() {
-		return getPropertyBoolean("max-players-plus-1",false) ? getPlayerCount() + 1 : getPropertyInt("max-players",40);
-	}
+
 	
 	
 	/*

@@ -20,6 +20,7 @@ import com.github.steveice10.packetlib.tcp.TcpSessionFactory;
 
 import net.novaplay.jbserver.network.INetworkManager;
 import net.novaplay.jbserver.network.Network;
+import net.novaplay.jbserver.network.java.handler.JavaLoginHandler;
 
 public class JavaNetworkManager implements INetworkManager{
 
@@ -37,23 +38,21 @@ public class JavaNetworkManager implements INetworkManager{
 	@Override
 	public void start() {
 		pool.execute(() -> {
-			JavaHandler handler = new JavaHandler(this);
 			Server server = new Server(ip, port, MinecraftProtocol.class, new TcpSessionFactory(Proxy.NO_PROXY));
 			server.setGlobalFlag(MinecraftConstants.VERIFY_USERS_KEY,true);
-			server.setGlobalFlag(MinecraftConstants.SERVER_LOGIN_HANDLER_KEY, handler);
+			server.setGlobalFlag(MinecraftConstants.SERVER_LOGIN_HANDLER_KEY, new JavaLoginHandler(this));
 			server.setGlobalFlag(MinecraftConstants.SERVER_INFO_BUILDER_KEY, new ServerInfoBuilder() {
 				@Override
 				public ServerStatusInfo buildInfo(Session session) {
 					ServerStatusInfo info = new ServerStatusInfo(
 							new VersionInfo(MinecraftConstants.GAME_VERSION,MinecraftConstants.PROTOCOL_VERSION),
-							new PlayerInfo(getNetwork().getServer().getMaximalPlayerCount(), getNetwork().getServer().getPlayerCount(), new GameProfile[0]),
+							new PlayerInfo(getNetwork().getServer().getPlayerManager().getMaximalPlayerCount(), getNetwork().getServer().getPlayerManager().getPlayerCount(), new GameProfile[0]),
 							new TextMessage(getNetwork().getMotd()),
 							null
 							);
 					return info;
 				}
 			});
-			server.addListener(handler);
 			server.bind();
 			getNetwork().getServer().getLogger().info("Started java server on port " + this.port);
 		});
