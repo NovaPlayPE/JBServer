@@ -14,9 +14,9 @@ public class BedrockRetranslatorSector {
 	private static HashMap<JBPacketIdentifier, BedrockRetranslator> MAP = new HashMap<JBPacketIdentifier,BedrockRetranslator>();
 	private static HashMap<Class<? extends BedrockPacket>, JBPacketIdentifier> PAK = new HashMap<Class<? extends BedrockPacket>,JBPacketIdentifier>();
 	static {
-		PAK.put(LoginPacket.class, JBPacketIdentifier.LOGIN);
+		PAK.put(LevelChunkPacket.class, JBPacketIdentifier.CHUNK_DATA);
 		
-		MAP.put(JBPacketIdentifier.LOGIN, new LoginRetranslator());
+		MAP.put(JBPacketIdentifier.CHUNK_DATA, new ChunkDataRetranslator());
 	}
 	
 	public static BedrockPacket translateTo(JBPacket pk) {

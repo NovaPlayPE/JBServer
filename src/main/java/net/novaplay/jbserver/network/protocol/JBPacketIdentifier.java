@@ -2,6 +2,7 @@ package net.novaplay.jbserver.network.protocol;
 
 public enum JBPacketIdentifier {
 	
-	LOGIN
+	//world stuff
+	CHUNK_DATA
 
 }
