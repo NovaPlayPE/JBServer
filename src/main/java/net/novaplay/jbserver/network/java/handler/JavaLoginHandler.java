@@ -8,6 +8,7 @@ import com.github.steveice10.packetlib.Session;
 import java.util.*;
 
 import net.novaplay.jbserver.network.java.JavaNetworkManager;
+import net.novaplay.jbserver.player.java.JavaPlayerInfo;
 
 public class JavaLoginHandler implements ServerLoginHandler{
 	
@@ -23,6 +24,7 @@ public class JavaLoginHandler implements ServerLoginHandler{
 	public void loggedIn(Session session) {
 		GameProfile profile = session.getFlag(MinecraftConstants.PROFILE_KEY);
 		UUID uid = profile.getId();
+		JavaPlayerInfo info = new JavaPlayerInfo(session.getLocalAddress().toString(),session.getPort(),uid);
 	}
 
 }

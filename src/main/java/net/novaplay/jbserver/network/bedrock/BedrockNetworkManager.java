@@ -23,7 +23,7 @@ public class BedrockNetworkManager implements INetworkManager{
 	
 	public BedrockNetworkManager(Network network, int port) {
 		this.network = network;
-		this.ip = network.getServer().getAddress();
+		this.ip = network.getServer().getServerSettings().getAddress();
 		this.port = port;
 	}
 	

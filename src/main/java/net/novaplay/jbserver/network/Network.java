@@ -48,13 +48,6 @@ public class Network {
 		return this.server;
 	}
 	
-	public String getMotd() {
-		return Server.getInstance().getPropertyString("motd");
-	}
-	
-	public String getUnderlinedMotd() {
-		return Server.getInstance().getPropertyString("motd-underline");
-	}
 	
 	public void registerPacket(JBPacketIdentifier id, JBPacketPairInfo info) {
 		this.packetList.put(id,info);

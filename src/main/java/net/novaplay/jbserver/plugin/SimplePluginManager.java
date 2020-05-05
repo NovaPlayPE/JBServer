@@ -400,9 +400,9 @@ public class SimplePluginManager implements PluginManager{
             for (Class<?> clazz = eventClass; Event.class.isAssignableFrom(clazz); clazz = clazz.getSuperclass()) {
                 // This loop checks for extending deprecated events
                 if (clazz.getAnnotation(Deprecated.class) != null) {
-                    if (Boolean.valueOf(String.valueOf(this.server.getConfig("settings.deprecated-verbpse", true)))) {
-                        this.server.getLogger().warning("Plugin " + plugin.getName()+ "has registered a listener for "+ clazz.getName() + "on method " + listener.getClass().getName() + "." + method.getName() + "(), but event is deprecated");
-                    }
+                    //if (Boolean.valueOf(String.valueOf(this.server.getConfig("settings.deprecated-verbpse", true)))) {
+                    //    this.server.getLogger().warning("Plugin " + plugin.getName()+ "has registered a listener for "+ clazz.getName() + "on method " + listener.getClass().getName() + "." + method.getName() + "(), but event is deprecated");
+                    //}
                     break;
                 }
             }

@@ -31,23 +31,23 @@ public class Logger {
 	private static Set<Logger> loggers = new HashSet<>();
 	private Map<String, String> textFormats = new HashMap<String, String>() {
 		{
-			this.put("§a", Color.GREEN);
-			this.put("§b", Color.CYAN);
-			this.put("§c", Color.RED);
-			this.put("§d", Color.MAGENTA);
-			this.put("§e", Color.YELLOW);
-			this.put("§f", Color.WHITE);
-			this.put("§0", Color.RESET);
-			this.put("§1", Color.BLUE);
-			this.put("§2", Color.GREEN);
-			this.put("§3", Color.CYAN);
-			this.put("§4", Color.RED);
-			this.put("§5", Color.MAGENTA);
-			this.put("§6", Color.YELLOW);
-			this.put("§9", Color.BLUE);
-			this.put("§r", Color.RESET);
-			this.put("§l", Color.BOLD);
-			this.put("§n", Color.UNDERLINED);
+			this.put("§a", ConsoleColor.GREEN);
+			this.put("§b", ConsoleColor.CYAN);
+			this.put("§c", ConsoleColor.RED);
+			this.put("§d", ConsoleColor.MAGENTA);
+			this.put("§e", ConsoleColor.YELLOW);
+			this.put("§f", ConsoleColor.WHITE);
+			this.put("§0", ConsoleColor.RESET);
+			this.put("§1", ConsoleColor.BLUE);
+			this.put("§2", ConsoleColor.GREEN);
+			this.put("§3", ConsoleColor.CYAN);
+			this.put("§4", ConsoleColor.RED);
+			this.put("§5", ConsoleColor.MAGENTA);
+			this.put("§6", ConsoleColor.YELLOW);
+			this.put("§9", ConsoleColor.BLUE);
+			this.put("§r", ConsoleColor.RESET);
+			this.put("§l", ConsoleColor.BOLD);
+			this.put("§n", ConsoleColor.UNDERLINED);
 		}
 	};
 

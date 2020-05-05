@@ -23,10 +23,10 @@ public class PlayerManager {
 	}
 	
 	public int getMaximalPlayerCount() {
-		return server.getPropertyBoolean("max-players-plus-1",false) ? getPlayerCount() + 1 : server.getPropertyInt("max-players",40);
+		return server.getServerSettings().isDynamicPlayerCountEnabled() ? getPlayerCount() + 1 : server.getServerSettings().getMaxPlayerCount();
 	}
 	
-	public boolean addPlayer() {
+	public boolean addPlayer(Player player) {
 		return false;
 	}
 	

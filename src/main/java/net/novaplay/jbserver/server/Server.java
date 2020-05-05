@@ -13,7 +13,7 @@ import net.novaplay.jbserver.event.HandlerList;
 import net.novaplay.jbserver.plugin.PluginManager;
 import net.novaplay.jbserver.plugin.SimplePluginManager;
 import net.novaplay.jbserver.plugin.java.JavaPluginLoader;
-import net.novaplay.jbserver.utils.Color;
+import net.novaplay.jbserver.utils.ConsoleColor;
 import net.novaplay.jbserver.plugin.Plugin;
 import net.novaplay.jbserver.command.CommandMap;
 import net.novaplay.jbserver.command.ConsoleCommandSender;
@@ -33,6 +33,8 @@ public class Server {
 	public String pluginPath;
 	@Getter
 	public String worldPath;
+	
+	private ServerSettings settings = null;
 	private ServerScheduler scheduler = null;
 	private Network network = null;
 	private Logger logger = null;
@@ -68,32 +70,37 @@ public class Server {
 		
 		this.properties = new Config(this.dataPath + "server.properties", Config.PROPERTIES, new ConfigSection() {
 			{
+				//adresses
 				put("server-ip", "0.0.0.0");
 				put("java-port",25565);
 				put("bedrock-port", 19132);
+				//motd
 				put("motd", "Cool JBServer");
 				put("motd-underline", "Powered by NovaPlay");
+				put("motd-repeat",1);
 				put("max-players", 40);
 				put("max-players-plus-1",false);
 				put("view-distance",10);
-				put("allow-flight",true);
-				put("gamemode",0);
-				put("difficulty",1);
-				put("pvp",false);
-				put("level-name", "world");
-				put("level-type", "NORMAL");
+				put("default-gamemode",0);
+				//world
+				put("spawn-protection",true);
+				put("spawn-protection-radius",20);
+				put("world-name", "world");
+				put("world-type", "normal");
 				put("allow-nether",false);
 				put("allow-end",false);
+				//query
 				put("enable-query",true);
 				put("enable-rcon",false);
 				put("online-mode",true);
 			}
 		});
+		this.settings = new ServerSettings(this.properties);
 		
 		this.playerManager = new PlayerManager(this);
 		
-		int port1 = getPropertyInt("java-port",25565);
-		int port2 = getPropertyInt("bedrock-port",25565);
+		int port1 = this.settings.getJavaPort();
+		int port2 = this.settings.getBedrockPort();
 		if(port1 == port2) {
 			this.network = new Network(this,port1);
 		} else {
@@ -108,7 +115,7 @@ public class Server {
 					command -> getLogger().error("Command " + command + " not found"));
 		});
 		
-		Object poolSize = this.getConfig("async-workers", "auto");
+		/*Object poolSize = this.getConfig("async-workers", "auto");
 		if (!(poolSize instanceof Integer)) {
 			try {
 				poolSize = Integer.valueOf((String) poolSize);
@@ -117,9 +124,10 @@ public class Server {
 			}
 		}
 		ServerScheduler.WORKERS = (int) poolSize;
+		*/
 		scheduler = new ServerScheduler();
 
-		this.logger.info(Color.GREEN + "Loading all plugins");
+		this.logger.info(ConsoleColor.GREEN + "Loading all plugins");
 		this.pluginManager = new SimplePluginManager(this);
 		this.pluginManager.registerInterface(JavaPluginLoader.class);
 		this.pluginManager.loadPlugins(this.pluginPath);
@@ -160,7 +168,7 @@ public class Server {
 	}
 	
 	public void start() {
-		getLogger().info(Color.GREEN + "Server has been started!, Type help for help (?)");
+		getLogger().info(ConsoleColor.GREEN + "Server has been started!, Type help for help (?)");
 		this.nextTick = System.currentTimeMillis();
 		while (this.isRunning) {
 			try {
@@ -204,90 +212,9 @@ public class Server {
 	public String getVersion() { return JBMain.VERSION;}
 	public String getApiVersion() { return JBMain.API_VERSION;}
 	
+	public ServerSettings getServerSettings() { return this.settings; }
+	
 	public Network getNetwork() {return this.network;}
 	
-	
-	public String getAddress() {
-		return this.getPropertyString("server-ip");
-	}
-	
-
-	
-	
-	/*
-	 * CONFIG
-	 * SECTION
-	 * IS
-	 * HERE
-	 */
-	
-	public Object getConfig(String variable) {
-		return this.getConfig(variable, null);
-	}
-
-	public Object getConfig(String variable, Object defaultValue) {
-		Object value = this.properties.get(variable);
-		return value == null ? defaultValue : value;
-	}
-
-	public Object getProperty(String variable) {
-		return this.getProperty(variable, null);
-	}
-
-	public Object getProperty(String variable, Object defaultValue) {
-		return this.properties.exists(variable) ? this.properties.get(variable) : defaultValue;
-	}
-
-	public void setPropertyString(String variable, String value) {
-		this.properties.set(variable, value);
-		this.properties.save();
-	}
-
-	public String getPropertyString(String variable) {
-		return this.getPropertyString(variable, null);
-	}
-
-	public String getPropertyString(String variable, String defaultValue) {
-		return this.properties.exists(variable) ? (String) this.properties.get(variable) : defaultValue;
-	}
-
-	public int getPropertyInt(String variable) {
-		return this.getPropertyInt(variable, null);
-	}
-
-	public int getPropertyInt(String variable, Integer defaultValue) {
-		return this.properties.exists(variable) ? (!this.properties.get(variable).equals("")
-				? Integer.parseInt(String.valueOf(this.properties.get(variable)))
-				: defaultValue) : defaultValue;
-	}
-
-	public void setPropertyInt(String variable, int value) {
-		this.properties.set(variable, value);
-		this.properties.save();
-	}
-
-	public boolean getPropertyBoolean(String variable) {
-		return this.getPropertyBoolean(variable, null);
-	}
-
-	public boolean getPropertyBoolean(String variable, Object defaultValue) {
-		Object value = this.properties.exists(variable) ? this.properties.get(variable) : defaultValue;
-		if (value instanceof Boolean) {
-			return (Boolean) value;
-		}
-		switch (String.valueOf(value)) {
-		case "on":
-		case "true":
-		case "1":
-		case "yes":
-			return true;
-		}
-		return false;
-	}
-
-	public void setPropertyBoolean(String variable, boolean value) {
-		this.properties.set(variable, value ? "1" : "0");
-		this.properties.save();
-	}
 	
 }

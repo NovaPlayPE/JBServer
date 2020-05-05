@@ -5,5 +5,5 @@ import net.novaplay.jbserver.network.NetworkSession;
 public interface Player {
 	
 	NetworkSession getSession();
-
+	PlayerInfo getPlayerInfo();
 }

@@ -1,6 +1,6 @@
 package net.novaplay.jbserver.utils;
 
-public class Color {
+public class ConsoleColor {
 	public static String BLACK = "\u001b[30m";
     public static String RED = "\u001b[31m";
     public static String GREEN = "\u001b[32m";

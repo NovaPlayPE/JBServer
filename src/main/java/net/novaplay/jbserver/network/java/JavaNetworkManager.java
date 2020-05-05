@@ -31,7 +31,7 @@ public class JavaNetworkManager implements INetworkManager{
 	
 	public JavaNetworkManager(Network network, int port) {
 		this.network = network;
-		this.ip = network.getServer().getAddress();
+		this.ip = network.getServer().getServerSettings().getAddress();
 		this.port = port;
 	}
 	
@@ -39,7 +39,7 @@ public class JavaNetworkManager implements INetworkManager{
 	public void start() {
 		pool.execute(() -> {
 			Server server = new Server(ip, port, MinecraftProtocol.class, new TcpSessionFactory(Proxy.NO_PROXY));
-			server.setGlobalFlag(MinecraftConstants.VERIFY_USERS_KEY,true);
+			server.setGlobalFlag(MinecraftConstants.VERIFY_USERS_KEY,network.getServer().getServerSettings().isOnlineModeEnabled());
 			server.setGlobalFlag(MinecraftConstants.SERVER_LOGIN_HANDLER_KEY, new JavaLoginHandler(this));
 			server.setGlobalFlag(MinecraftConstants.SERVER_INFO_BUILDER_KEY, new ServerInfoBuilder() {
 				@Override
@@ -47,7 +47,7 @@ public class JavaNetworkManager implements INetworkManager{
 					ServerStatusInfo info = new ServerStatusInfo(
 							new VersionInfo(MinecraftConstants.GAME_VERSION,MinecraftConstants.PROTOCOL_VERSION),
 							new PlayerInfo(getNetwork().getServer().getPlayerManager().getMaximalPlayerCount(), getNetwork().getServer().getPlayerManager().getPlayerCount(), new GameProfile[0]),
-							new TextMessage(getNetwork().getMotd()),
+							new TextMessage(getNetwork().getServer().getServerSettings().getFullMotd()),
 							null
 							);
 					return info;
