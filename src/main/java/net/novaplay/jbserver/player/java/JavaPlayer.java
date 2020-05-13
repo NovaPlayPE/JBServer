@@ -8,14 +8,21 @@ import net.novaplay.jbserver.player.PlayerManager;
 
 public class JavaPlayer implements Player {
 
+	private boolean connected = true;
+
 	private NetworkSession session = null;
 	private PlayerInfo playerInfo = null;
-	
+
 	public JavaPlayer(JavaSession session, PlayerInfo info) {
 		this.session = session;
 		this.playerInfo = info;
 	}
-	
+
+	@Override
+	public boolean isConnected() {
+		return connected;
+	}
+
 	@Override
 	public NetworkSession getSession() {
 		return this.session;
@@ -25,5 +32,4 @@ public class JavaPlayer implements Player {
 	public PlayerInfo getPlayerInfo() {
 		return this.playerInfo;
 	}
-
 }

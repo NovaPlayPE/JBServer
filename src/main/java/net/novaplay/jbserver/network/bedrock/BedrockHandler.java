@@ -6,7 +6,7 @@ import com.nukkitx.protocol.bedrock.BedrockPong;
 import com.nukkitx.protocol.bedrock.BedrockServerEventHandler;
 import com.nukkitx.protocol.bedrock.BedrockServerSession;
 
-import net.novaplay.jbserver.network.bedrock.handler.JBBedrockPacketHandler;
+import net.novaplay.jbserver.network.bedrock.handler.JBBedrockLoginPacketHandler;
 import net.novaplay.jbserver.server.Server;
 
 public class BedrockHandler implements BedrockServerEventHandler {
@@ -42,7 +42,7 @@ public class BedrockHandler implements BedrockServerEventHandler {
 	public void onSessionCreation(BedrockServerSession session) {
 		BedrockSession s = new BedrockSession(session);
 		session.setLogging(true);
-		session.setPacketHandler(new JBBedrockPacketHandler(s));
+		session.setPacketHandler(new JBBedrockLoginPacketHandler(s));
 		session.addDisconnectHandler(reason -> {
 			
 		});

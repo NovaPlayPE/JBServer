@@ -45,7 +45,7 @@ public final class CertificateData{
     private final String skinData;
     private SerializedSkin skin;
 
-    public String getUsername() {
+    public String getUserName() {
         return username;
     }
 
