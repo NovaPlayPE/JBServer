@@ -12,7 +12,7 @@ import lombok.Getter;
 public class BedrockSession implements NetworkSession {
 
 	@Getter
-	private BedrockServerSession serverSession;
+	private final BedrockServerSession serverSession;
 
 	@Override
 	public void sendPacket(JBPacket packet) {
