@@ -31,9 +31,9 @@
   
   <dependencies>
   	<dependency>
-  		<groupId>net.novaplay</groupId>
-  		<artifactId>library</artifactId>
-  		<version>1.0</version>
+  			<groupId>net.novaplay</groupId>
+  			<artifactId>library</artifactId>
+  			<version>1.0</version>
   	</dependency>
   	<dependency>
             <groupId>org.apache.commons</groupId>

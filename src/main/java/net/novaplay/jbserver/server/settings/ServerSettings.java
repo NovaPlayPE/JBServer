@@ -1,4 +1,4 @@
-package net.novaplay.jbserver.server;
+package net.novaplay.jbserver.server.settings;
 
 import net.novaplay.jbserver.config.Config;
 

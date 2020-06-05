@@ -1,4 +1,4 @@
-package net.novaplay.jbserver.utils.world;
+package net.novaplay.jbserver.utils;
 
 import java.util.Arrays;
 
@@ -15,6 +15,14 @@ public class NibbleArray {
 	public NibbleArray(byte[] bytes) {
 		this.size = bytes.length << 1;
 		this.data = bytes;
+	}
+	
+	public void setData(byte[] data) {
+		System.arraycopy(data, 0, this.data, 0, data.length);
+	}
+	
+	public byte[] getData() {
+		return this.data;
 	}
 	
 	public void set(int x, int y, int z, byte value) {

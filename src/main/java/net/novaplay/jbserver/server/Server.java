@@ -20,6 +20,7 @@ import net.novaplay.jbserver.command.ConsoleCommandSender;
 import net.novaplay.jbserver.JBMain;
 import net.novaplay.jbserver.player.*;
 import net.novaplay.jbserver.scheduler.ServerScheduler;
+import net.novaplay.jbserver.server.settings.ServerSettings;
 import net.novaplay.jbserver.utils.Logger;
 
 public class Server {

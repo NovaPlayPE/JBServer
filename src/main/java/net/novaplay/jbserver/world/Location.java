@@ -61,6 +61,6 @@ public class Location {
 	 * it's not ready, yet
 	 */
 	public MaterialBlock getBlock() {
-		return null;
+		return this.getWorld().getBlock(this.getX(), this.getY(), this.getZ());
 	}
 }

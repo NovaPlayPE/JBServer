@@ -9,14 +9,14 @@ import net.novaplay.jbserver.player.bedrock.BedrockPlayerInfo;
 import net.novaplay.jbserver.server.Server;
 import net.novaplay.jbserver.utils.bedrock.CertificateData;
 
-public class JBBedrockPacketHandler implements BedrockPacketHandler {
+public class BedrockLoginHandler implements BedrockPacketHandler {
 	
 	private BedrockSession session = null;
 	public BedrockSession getSession() {
 		return this.session;
 	}
 	
-	public JBBedrockPacketHandler(BedrockSession session) {
+	public BedrockLoginHandler(BedrockSession session) {
 		this.session = session;
 	}
 	

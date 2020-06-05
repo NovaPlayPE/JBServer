@@ -29,7 +29,7 @@ public class Logger {
 	private org.apache.log4j.Logger fileLog = null;
 	public static File file = null;
 	private static Set<Logger> loggers = new HashSet<>();
-	private Map<String, String> textFormats = new HashMap<String, String>() {
+	private static Map<String, String> textFormats = new HashMap<String, String>() {
 		{
 			this.put("§a", ConsoleColor.GREEN);
 			this.put("§b", ConsoleColor.CYAN);
@@ -146,7 +146,7 @@ public class Logger {
 		warning(Utils.getExceptionMessage(message));
 	}
 
-	private String removeColors(String message) {
+	public static String removeColors(String message) {
 		String[] list = new String[] { "a", "b", "c", "d", "e", "f", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 				"r", "l", "n" };
 		for (String colors : list) {
@@ -155,7 +155,7 @@ public class Logger {
 		return message;
 	}
 
-	public String colorize(String message) {
+	public static String colorize(String message) {
 		for (Map.Entry<String, String> map : textFormats.entrySet()) {
 			message = message.replaceAll(map.getKey(), map.getValue());
 		}

@@ -20,7 +20,7 @@ import com.github.steveice10.packetlib.tcp.TcpSessionFactory;
 
 import net.novaplay.jbserver.network.INetworkManager;
 import net.novaplay.jbserver.network.Network;
-import net.novaplay.jbserver.network.java.handler.JavaLoginHandler;
+import net.novaplay.jbserver.network.java.handler.*;
 
 public class JavaNetworkManager implements INetworkManager{
 
@@ -53,6 +53,7 @@ public class JavaNetworkManager implements INetworkManager{
 					return info;
 				}
 			});
+			server.addListener(new JavaPacketHandler());
 			server.bind();
 			getNetwork().getServer().getLogger().info("Started java server on port " + this.port);
 		});

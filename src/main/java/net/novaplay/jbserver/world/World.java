@@ -1,5 +1,11 @@
 package net.novaplay.jbserver.world;
 
-public class World {
+import net.novaplay.jbserver.material.MaterialBlock;
 
+public class World {
+	
+	public MaterialBlock getBlock(double x, double y, double z) {
+		return null;
+	}
+	
 }
