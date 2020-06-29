@@ -26,4 +26,22 @@ public class JavaPlayer implements Player {
 		return this.playerInfo;
 	}
 
+	@Override
+	public void sendMessage(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setOp(boolean value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isOp() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

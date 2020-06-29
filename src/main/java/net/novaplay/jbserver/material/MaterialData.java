@@ -1,5 +1,4 @@
 package net.novaplay.jbserver.material;
 
-public class MaterialData {
-
+public interface MaterialData {
 }

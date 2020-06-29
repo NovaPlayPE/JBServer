@@ -1,5 +1,6 @@
 package net.novaplay.jbserver.world;
 
+import net.novaplay.library.math.Rotation;
 import net.novaplay.library.math.Vector3d;
 
 import net.novaplay.jbserver.material.MaterialBlock;
@@ -17,20 +18,16 @@ public class Location {
 	private Vector3d vector = null;
 	@Getter
 	@Setter
-	private float yaw;
-	@Getter
-	@Setter
-	private float pitch;
+	private Rotation rotation = null;
 	
 	public Location(World world, Vector3d vector) {
-		this(world, vector, 0, 0);
+		this(world, vector, new Rotation(0,0));
 	}
 	
-	public Location(World world, Vector3d vector, float yaw, float pitch) {
+	public Location(World world, Vector3d vector, Rotation rotation) {
 		this.world = world;
 		this.vector = vector;
-		this.yaw = yaw;
-		this.pitch = pitch;
+		this.rotation = rotation;
 	}
 	
 	public double getX() {
@@ -45,6 +42,14 @@ public class Location {
 		return this.vector.getZ();
 	}
 	
+	public float getYaw() {
+		return this.rotation.getYaw();
+	}
+	
+	public float getPitch() {
+		return this.rotation.getPitch();
+	}
+	
 	public void setX(double x) {
 		this.vector.setX(x);
 	}
@@ -55,6 +60,14 @@ public class Location {
 	
 	public void setZ(double z) {
 		this.vector.setZ(z);
+	}
+	
+	public void setYaw(float yaw) {
+		this.rotation.setYaw(yaw);
+	}
+	
+	public void setPitch(float pitch) {
+		this.rotation.setPitch(pitch);
 	}
 	
 	/**
