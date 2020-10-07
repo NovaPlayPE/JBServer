@@ -3,7 +3,10 @@ package net.novaplay.jbserver.world.chunk;
 import com.google.common.base.Preconditions;
 import it.unimi.dsi.fastutil.ints.IntList;
 import io.netty.buffer.ByteBuf;
+
 import net.novaplay.jbserver.utils.NibbleArray;
+
+import net.novaplay.library.nbt.tags.*;
 
 public class Section {
 	
@@ -48,6 +51,9 @@ public class Section {
 	
 	public void writeToBedrock(ByteBuf buf) {
 		
+	}
+	
+	public void save(CompoundTag nbt) {
 	}
 	
 }

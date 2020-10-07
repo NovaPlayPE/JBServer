@@ -21,7 +21,7 @@ public class BedrockLoginHandler implements BedrockPacketHandler {
 	}
 	
 	public boolean isNickValid(String username) {
-		return !username.equals("rcon") && username.equals("console") && username.length() >= 1 && username.length() <= 16 && !username.matches("/[^A-Za-z0-9_ ]/");
+		return !username.equals("rcon") && !username.equals("console") && username.length() >= 1 && username.length() <= 16 && !username.matches("/[^A-Za-z0-9_ ]/");
 	}
 	
 	@Override
