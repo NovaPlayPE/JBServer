@@ -2,6 +2,8 @@ package net.novaplay.jbserver.world.provider.impl.npworld;
 
 import java.io.File;
 
+import lombok.Getter;
+
 import net.novaplay.jbserver.world.WorldData;
 import net.novaplay.jbserver.world.chunk.Chunk;
 import net.novaplay.jbserver.world.provider.WorldProvider;
@@ -13,8 +15,12 @@ import net.novaplay.jbserver.world.provider.impl.BaseWorldProvider;
  */
 public class NPWorldWorldProvider extends BaseWorldProvider{
 	
+	@Getter
+	public File worldFile;
+	
 	public NPWorldWorldProvider(String path) {
 		super(path);
+		this.worldFile = new File(path + ".npworld");
 	}
 
 	@Override
