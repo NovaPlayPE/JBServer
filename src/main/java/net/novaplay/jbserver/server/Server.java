@@ -10,6 +10,8 @@ import net.novaplay.jbserver.config.Config;
 import net.novaplay.jbserver.config.ConfigSection;
 import net.novaplay.jbserver.network.Network;
 import net.novaplay.jbserver.event.HandlerList;
+import net.novaplay.jbserver.factory.FactoryManager;
+import net.novaplay.jbserver.manager.PathManager;
 import net.novaplay.jbserver.plugin.PluginManager;
 import net.novaplay.jbserver.plugin.SimplePluginManager;
 import net.novaplay.jbserver.plugin.java.JavaPluginLoader;
@@ -26,24 +28,17 @@ import net.novaplay.jbserver.utils.Logger;
 public class Server {
 	
 	private static Server instance = null;
-	@Getter
-	public String filePath;
-	@Getter
-	public String dataPath;
-	@Getter
-	public String pluginPath;
-	@Getter
-	public String worldPath;
+
 	
 	private ServerSettings settings = null;
 	private ServerScheduler scheduler = null;
 	private Network network = null;
 	private Logger logger = null;
 	
+	@Getter
+	private FactoryManager factoryManager = null;
 
-	
 	private PluginManager pluginManager = null;
-	private PlayerManager playerManager = null;
 	
 	private ConsoleCommandSender commandSender = new ConsoleCommandSender();
 	private CommandMap commandMap = null;
@@ -59,17 +54,18 @@ public class Server {
 	
 	public Server(String filePath, String dataPath, String pluginPath, String worldPath) {
 		instance = this;
-		this.filePath = filePath;
-		if (!new File(pluginPath).exists()) {new File(pluginPath).mkdirs();}
-		this.dataPath = new File(dataPath).getAbsolutePath() + "/";
-		this.pluginPath = new File(pluginPath).getAbsolutePath() + "/";
-		this.worldPath = new File(worldPath).getAbsolutePath() + "/";
+		PathManager.setFilePath(filePath);
+		if (!new File(pluginPath).exists()) new File(pluginPath).mkdirs();
+		if(!new File(worldPath).exists()) new File(worldPath).mkdirs();
+		PathManager.dataPath = new File(dataPath).getAbsolutePath() + "/";
+		PathManager.pluginPath = new File(pluginPath).getAbsolutePath() + "/";
+		PathManager.worldPath = new File(worldPath).getAbsolutePath() + "/";
 		this.logger = new Logger(dataPath + "server.log");
 		
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> {}));
 		Thread.currentThread().setName("JBServer");
 		
-		this.properties = new Config(this.dataPath + "server.properties", Config.PROPERTIES, new ConfigSection() {
+		this.properties = new Config(PathManager.dataPath + "server.properties", Config.PROPERTIES, new ConfigSection() {
 			{
 				//adresses
 				put("server-ip", "0.0.0.0");
@@ -77,7 +73,7 @@ public class Server {
 				put("bedrock-port", 19132);
 				//motd
 				put("motd", "Cool JBServer");
-				put("motd-underline", "Powered by NovaPlay");
+				put("motd-underline", "Powered by JBServer");
 				put("motd-repeat",1);
 				put("max-players", 40);
 				put("max-players-plus-1",false);
@@ -88,6 +84,7 @@ public class Server {
 				put("spawn-protection-radius",20);
 				put("world-name", "world");
 				put("world-type", "normal");
+				put("world-seed", 0);
 				put("allow-nether",false);
 				put("allow-end",false);
 				//query
@@ -98,15 +95,8 @@ public class Server {
 		});
 		this.settings = new ServerSettings(this.properties);
 		
-		this.playerManager = new PlayerManager(this);
-		
-		int port1 = this.settings.getJavaPort();
-		int port2 = this.settings.getBedrockPort();
-		if(port1 == port2) {
-			this.network = new Network(this,port1);
-		} else {
-			this.network = new Network(this,port1,port2);
-		}
+		enableFactory();
+		enableNetwork();
 		
 		this.commandSender = new ConsoleCommandSender();
 		this.commandMap = new CommandMap(this);
@@ -116,22 +106,7 @@ public class Server {
 					command -> getLogger().error("Command " + command + " not found"));
 		});
 		
-		/*Object poolSize = this.getConfig("async-workers", "auto");
-		if (!(poolSize instanceof Integer)) {
-			try {
-				poolSize = Integer.valueOf((String) poolSize);
-			} catch (Exception e) {
-				poolSize = Math.max(Runtime.getRuntime().availableProcessors() + 1, 4);
-			}
-		}
-		ServerScheduler.WORKERS = (int) poolSize;
-		*/
 		scheduler = new ServerScheduler();
-
-		this.logger.info(ConsoleColor.GREEN + "Loading all plugins");
-		this.pluginManager = new SimplePluginManager(this);
-		this.pluginManager.registerInterface(JavaPluginLoader.class);
-		this.pluginManager.loadPlugins(this.pluginPath);
 		enablePlugins();
 
 		this.properties.save(true);
@@ -155,8 +130,27 @@ public class Server {
 		start();
 	}
 	
+	public void enableFactory() {
+		this.factoryManager = new FactoryManager();
+		this.factoryManager.init(this);
+	}
+	
+	public void enableNetwork() {
+		int port1 = this.settings.getJavaPort();
+		int port2 = this.settings.getBedrockPort();
+		if(port1 == port2) {
+			this.network = new Network(this,port1);
+		} else {
+			this.network = new Network(this,port1,port2);
+		}
+	}
 	
 	public void enablePlugins() {
+		this.logger.info(ConsoleColor.GREEN + "Loading all plugins");
+		this.pluginManager = new SimplePluginManager(this);
+		this.pluginManager.registerInterface(JavaPluginLoader.class);
+		this.pluginManager.loadPlugins(PathManager.pluginPath);
+		
 		for (Plugin plugin : getPluginManager().getPlugins().values()) {
 			if (!plugin.isEnabled()) {
 				getPluginManager().enablePlugin(plugin);
@@ -208,7 +202,6 @@ public class Server {
 	
 	public ServerScheduler getScheduler() { return this.scheduler; }
 	public PluginManager getPluginManager() { return this.pluginManager; }
-	public PlayerManager getPlayerManager() { return this.playerManager; }
 	
 	public String getVersion() { return JBMain.VERSION;}
 	public String getApiVersion() { return JBMain.API_VERSION;}

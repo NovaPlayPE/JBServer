@@ -14,6 +14,7 @@ public class World {
 	
 	@Getter
 	private String name = null;
+	
 	@Getter
 	private WorldProvider worldProvider = null;
 	
@@ -24,8 +25,12 @@ public class World {
 		this.worldProvider = provider; 
 	}
 	
-	public MaterialBlock getBlock(double x, double y, double z) {
-		return null;
+	public void init() {
+		
+	}
+	
+	public void unload() {
+		
 	}
 	
 	public void save() {

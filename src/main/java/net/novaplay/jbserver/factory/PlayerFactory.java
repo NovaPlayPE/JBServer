@@ -1,17 +1,17 @@
-package net.novaplay.jbserver.player;
+package net.novaplay.jbserver.factory;
 
 import java.util.HashMap;
 import java.util.UUID;
 
+import net.novaplay.jbserver.player.Player;
 import net.novaplay.jbserver.server.Server;
 
-public class PlayerManager {
-	
+public class PlayerFactory implements Factory {
+
 	private HashMap<UUID,Player> players = new HashMap<UUID,Player>();
-	private Server server = null;
 	
-	public PlayerManager(Server server) {
-		this.server = server;
+	public void init(FactoryManager mgr) {
+		
 	}
 	
 	public int getPlayerCount() {
@@ -23,7 +23,7 @@ public class PlayerManager {
 	}
 	
 	public int getMaximalPlayerCount() {
-		return server.getServerSettings().isDynamicPlayerCountEnabled() ? getPlayerCount() + 1 : server.getServerSettings().getMaxPlayerCount();
+		return Server.getInstance().getServerSettings().isDynamicPlayerCountEnabled() ? getPlayerCount() + 1 : Server.getInstance().getServerSettings().getMaxPlayerCount();
 	}
 	
 	public boolean addPlayer(Player player) {
@@ -33,5 +33,5 @@ public class PlayerManager {
 	public boolean removePlayer() {
 		return false;
 	}
-	
+
 }

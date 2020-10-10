@@ -11,7 +11,7 @@ public class WorldData {
 	
 	@Getter
 	@Setter
-	public String name = "overworld";
+	public String name;
 	
 	@Getter
 	@Setter
@@ -31,7 +31,7 @@ public class WorldData {
 	
 	@Getter
 	@Setter
-	public Map<String, String> generatorOptions = null;
+	public String generatorOptions;
 	
 	@Getter
 	@Setter

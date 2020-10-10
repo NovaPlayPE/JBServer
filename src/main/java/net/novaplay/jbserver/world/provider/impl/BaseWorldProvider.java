@@ -7,6 +7,7 @@ import net.novaplay.jbserver.world.provider.WorldProvider;
 public abstract class BaseWorldProvider implements WorldProvider {
 	
 	protected String path;
+	public WorldData worldData;
 	
 	public BaseWorldProvider(String path) {
 		this.path = path;
@@ -21,9 +22,14 @@ public abstract class BaseWorldProvider implements WorldProvider {
 	public abstract WorldData load();
 	public abstract void save(WorldData dat);
 	
+	public void setWorldData(WorldData data) {
+		this.worldData = data;
+	}
+	
 	@Override
 	public WorldData loadWorldData() {
-		return load();
+		this.worldData = load();
+		return this.worldData;
 	}
 
 	@Override
