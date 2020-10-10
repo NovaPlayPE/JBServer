@@ -18,7 +18,7 @@ public class JBMain {
 	public static void main(String[] args) {
 		String osName = System.getProperty("os.name").toLowerCase();
         if (osName.contains("windows")) {
-            if (osName.contains("windows 8") || osName.contains("2012") || osName.contains("10")) {
+            if (osName.contains("2012") || osName.contains("10")) {
                 shortTitle = true;
             }
         }
