@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 import net.novatech.jbserver.event.*;
+import net.novatech.jbserver.event.EventListener;
 import net.novatech.jbserver.server.Server;
 import net.novatech.jbserver.utils.Logger;
 import net.novatech.jbserver.utils.Utils;

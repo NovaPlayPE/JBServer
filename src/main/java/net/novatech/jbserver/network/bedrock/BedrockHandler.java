@@ -33,8 +33,8 @@ public class BedrockHandler implements BedrockServerEventHandler {
 		pong.setIpv4Port(getManager().getPort());
 		pong.setIpv6Port(getManager().getPort());
 		pong.setNintendoLimited(false);
-		pong.setPlayerCount(Server.getInstance().getPlayerManager().getPlayerCount());
-		pong.setMaximumPlayerCount(Server.getInstance().getPlayerManager().getMaximalPlayerCount());
+		pong.setPlayerCount(Server.getInstance().getFactoryManager().getPlayerFactory().getPlayerCount());
+		pong.setMaximumPlayerCount(Server.getInstance().getFactoryManager().getPlayerFactory().getMaximalPlayerCount());
 		return pong;
 	}
 

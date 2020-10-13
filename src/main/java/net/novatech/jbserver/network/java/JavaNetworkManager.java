@@ -46,7 +46,7 @@ public class JavaNetworkManager implements INetworkManager{
 				public ServerStatusInfo buildInfo(Session session) {
 					ServerStatusInfo info = new ServerStatusInfo(
 							new VersionInfo(MinecraftConstants.GAME_VERSION,MinecraftConstants.PROTOCOL_VERSION),
-							new PlayerInfo(getNetwork().getServer().getPlayerManager().getMaximalPlayerCount(), getNetwork().getServer().getPlayerManager().getPlayerCount(), new GameProfile[0]),
+							new PlayerInfo(getNetwork().getServer().getFactoryManager().getPlayerFactory().getMaximalPlayerCount(), getNetwork().getServer().getFactoryManager().getPlayerFactory().getPlayerCount(), new GameProfile[0]),
 							new TextMessage(getNetwork().getServer().getServerSettings().getFullMotd()),
 							null
 							);

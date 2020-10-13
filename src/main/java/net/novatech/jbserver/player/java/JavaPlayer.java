@@ -4,7 +4,6 @@ import net.novatech.jbserver.network.NetworkSession;
 import net.novatech.jbserver.network.java.JavaSession;
 import net.novatech.jbserver.player.Player;
 import net.novatech.jbserver.player.PlayerInfo;
-import net.novatech.jbserver.player.PlayerManager;
 
 public class JavaPlayer implements Player {
 

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.*;
 
 import net.novatech.jbserver.event.*;
+import net.novatech.jbserver.event.EventListener;
 
 public interface PluginManager {
 	

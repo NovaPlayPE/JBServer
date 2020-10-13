@@ -67,11 +67,4 @@ public class Location {
 	public void setPitch(float pitch) {
 		this.rotation.setPitch(pitch);
 	}
-	
-	/**
-	 * it's not ready, yet
-	 */
-	public MaterialBlock getBlock() {
-		return this.getWorld().getBlock(this.getX(), this.getY(), this.getZ());
-	}
 }
