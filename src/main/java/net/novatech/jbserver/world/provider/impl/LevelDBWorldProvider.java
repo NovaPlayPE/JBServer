@@ -1,11 +1,11 @@
-package net.novatech.jbserver.world.provider.impl.leveldb;
+package net.novatech.jbserver.world.provider.impl;
 
 import java.io.File;
 
+import net.novatech.jbserver.manager.PathManager;
 import net.novatech.jbserver.world.WorldData;
 import net.novatech.jbserver.world.chunk.Chunk;
-import net.novatech.jbserver.world.provider.WorldProvider;
-import net.novatech.jbserver.world.provider.impl.BaseWorldProvider;
+import net.novatech.jbserver.world.provider.BaseWorldProvider;
 
 public class LevelDBWorldProvider extends BaseWorldProvider{
 	
@@ -15,20 +15,32 @@ public class LevelDBWorldProvider extends BaseWorldProvider{
 
 	@Override
 	public boolean isValid() {
-		if(new File(getPath() + "/level.dat").exists() && new File(getPath() + "/db/").isDirectory()) {
+		if(new File(getAbsolutePath() + "/level.dat").exists() && new File(getAbsolutePath() + "/db/").isDirectory()) {
 			return true;
 		}
 		return false;
 	}
 
 	@Override
-	public WorldData load() {
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setWorldData(WorldData data) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public WorldData loadWorldData(File file) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void save(WorldData dat) {
+	public void saveWorldData(WorldData worldData) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,10 +1,11 @@
-package net.novatech.jbserver.world.provider.impl.anvil;
+package net.novatech.jbserver.world.provider.impl;
 
 import java.io.File;
 
+import net.novatech.jbserver.manager.PathManager;
 import net.novatech.jbserver.world.WorldData;
 import net.novatech.jbserver.world.chunk.Chunk;
-import net.novatech.jbserver.world.provider.impl.BaseWorldProvider;
+import net.novatech.jbserver.world.provider.BaseWorldProvider;
 
 public class AnvilWorldProvider extends BaseWorldProvider{
 	
@@ -14,8 +15,8 @@ public class AnvilWorldProvider extends BaseWorldProvider{
 
 	@Override
 	public boolean isValid() {
-		if(new File(getPath() + "/level.dat").exists() && new File(getPath() + "/region/").isDirectory()) {
-			for(File file : new File(getPath() + "/region/").listFiles()) {
+		if(new File(getAbsolutePath() + "/level.dat").exists() && new File(getAbsolutePath() + "/region/").isDirectory()) {
+			for(File file : new File(getAbsolutePath() + "/region/").listFiles()) {
 				if(file.getName().endsWith(".mca")) {
 					return true;
 				}
@@ -25,13 +26,25 @@ public class AnvilWorldProvider extends BaseWorldProvider{
 	}
 
 	@Override
-	public WorldData load() {
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setWorldData(WorldData data) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public WorldData loadWorldData(File file) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void save(WorldData dat) {
+	public void saveWorldData(WorldData worldData) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -53,5 +66,7 @@ public class AnvilWorldProvider extends BaseWorldProvider{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 
 }

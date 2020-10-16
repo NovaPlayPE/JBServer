@@ -5,8 +5,8 @@ import net.novatech.jbserver.server.Server;
 import net.novatech.jbserver.world.World;
 import net.novatech.jbserver.world.WorldData;
 import net.novatech.jbserver.world.WorldType;
-import net.novatech.jbserver.world.provider.impl.BaseWorldProvider;
-import net.novatech.jbserver.world.provider.impl.anvil.AnvilWorldProvider;
+import net.novatech.jbserver.world.provider.BaseWorldProvider;
+import net.novatech.jbserver.world.provider.impl.AnvilWorldProvider;
 import net.novatech.library.math.Vector3i;
 
 import java.util.*;
@@ -29,11 +29,12 @@ public class WorldFactory implements Factory {
 	}
 	
 	public World loadWorld(String worldname) {
-		return loadWorld(worldname, new AnvilWorldProvider(PathManager.getWorldPath() + worldname));
+		return loadWorld(worldname, new AnvilWorldProvider(worldname));
 	}
 	
 	public World loadWorld(String worldname, BaseWorldProvider worldProvider) {
 		World world = new World(Server.getInstance(),worldname, worldProvider);
+		worlds.put(worldname, world);
 		return world;
 	}
 	

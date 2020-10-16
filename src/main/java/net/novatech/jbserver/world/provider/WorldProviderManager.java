@@ -3,8 +3,6 @@ package net.novatech.jbserver.world.provider;
 import java.lang.reflect.Constructor;
 import java.util.*;
 
-import net.novatech.jbserver.world.provider.impl.BaseWorldProvider;
-
 public class WorldProviderManager {
 	
 	public static Map<String, Class<? extends BaseWorldProvider>> providers = new HashMap<String, Class<? extends BaseWorldProvider>>();
