@@ -5,6 +5,10 @@ import java.util.*;
 
 public class WorldProviderManager {
 	
+	public static String ANVIL = "anvil";
+	public static String LEVELDB = "leveldb";
+	public static String NPWORLD = "npworld";
+	
 	public static Map<String, Class<? extends BaseWorldProvider>> providers = new HashMap<String, Class<? extends BaseWorldProvider>>();
 	
 	

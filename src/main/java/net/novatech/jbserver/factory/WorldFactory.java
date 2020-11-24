@@ -6,7 +6,10 @@ import net.novatech.jbserver.world.World;
 import net.novatech.jbserver.world.WorldData;
 import net.novatech.jbserver.world.WorldType;
 import net.novatech.jbserver.world.provider.BaseWorldProvider;
+import net.novatech.jbserver.world.provider.WorldProviderManager;
 import net.novatech.jbserver.world.provider.impl.AnvilWorldProvider;
+import net.novatech.jbserver.world.provider.impl.LevelDBWorldProvider;
+import net.novatech.jbserver.world.provider.impl.NPWorldWorldProvider;
 import net.novatech.library.math.Vector3i;
 
 import java.util.*;
@@ -17,7 +20,9 @@ public class WorldFactory implements Factory {
 	public Map<String, World> worlds = new HashMap<String, World>();
 	
 	public void init(FactoryManager manager) {
-		
+		WorldProviderManager.registerWorldProvider(WorldProviderManager.ANVIL, AnvilWorldProvider.class);
+		WorldProviderManager.registerWorldProvider(WorldProviderManager.LEVELDB, LevelDBWorldProvider.class);
+		WorldProviderManager.registerWorldProvider(WorldProviderManager.NPWORLD, NPWorldWorldProvider.class);
 	}
 
 	public World setDefaultWorld(World world) {

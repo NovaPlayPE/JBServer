@@ -1,24 +1,16 @@
 package net.novatech.jbserver.network.protocol.impl;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.novatech.jbserver.network.protocol.JBPacket;
 import net.novatech.jbserver.network.protocol.JBPacketIdentifier;
 
-public class JBChunkDataPacket extends JBPacket {
-	
+public class JBTextPacket extends JBPacket{
+
 	@Override
 	public JBPacketIdentifier getIdentifier() {
-		return JBPacketIdentifier.CHUNK_DATA;
+		return JBPacketIdentifier.TEXT_PACKET;
 	}
 	
-	@Getter
-	@Setter
-	public int chunkX;
-	
-	@Getter
-	@Setter
-	public int chunkZ;
+	public String content = "";
 	
 	public boolean isServerBound() {
 		return false;
@@ -27,5 +19,5 @@ public class JBChunkDataPacket extends JBPacket {
 	public boolean isClientBound() {
 		return true;
 	}
-	
+
 }
