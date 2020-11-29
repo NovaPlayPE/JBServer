@@ -21,6 +21,10 @@ public class ChunkManager {
 		return this.provider;
 	}
 	
+	public Chunk getChunk(int chunkX, int chunkZ) {
+		return null;
+	}
+	
 	public void setChunk(int chunkX, int chunkZ, Chunk chunk) {
 		
 	}
