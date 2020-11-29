@@ -17,7 +17,7 @@ public class Chunk {
 	public int z;
 	@Getter
 	public World world;
-	public Section[] chunkSections;
+	public ChunkSection[] chunkSections;
 	
 	public List<Entity> entities = new ArrayList<Entity>();
 	
@@ -29,7 +29,7 @@ public class Chunk {
 		this.z = z;
 		
 		this.world = world;
-		this.chunkSections = new Section[16];
+		this.chunkSections = new ChunkSection[16];
 	}
 	
 	public byte getBlockLight(int x, int y, int z) {
@@ -39,7 +39,7 @@ public class Chunk {
 	
 	public byte getSkyLight(int x, int y, int z) {
 		int index = getSubChunkIndex(y);
-		Section sec = getSections()[index];
+		ChunkSection sec = getSections()[index];
 		return sec.getSkyLight(x, y, z);
 	}
 	
@@ -57,7 +57,7 @@ public class Chunk {
 		return y >> 4;
 	}
 	
-	public Section[] getSections() {
+	public ChunkSection[] getSections() {
 		return chunkSections;
 	}
 	

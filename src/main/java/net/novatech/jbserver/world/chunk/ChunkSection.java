@@ -6,7 +6,7 @@ import io.netty.buffer.ByteBuf;
 import net.novatech.jbserver.utils.NibbleArray;
 import net.novatech.library.nbt.tags.*;
 
-public class Section {
+public class ChunkSection {
 	
 	private static int SIZE = 4096;
 	
@@ -17,11 +17,11 @@ public class Section {
 	private NibbleArray blockLight = null;
 	private NibbleArray skyLight = null;
 	
-	public Section() {
+	public ChunkSection() {
 		this(new short[2][SIZE], new NibbleArray(SIZE), new NibbleArray(SIZE));
 	}
 	
-	private Section(short[][] blocks, NibbleArray blockLight, NibbleArray skyLight) { //multi palettes not implemented yet...
+	private ChunkSection(short[][] blocks, NibbleArray blockLight, NibbleArray skyLight) { //multi palettes not implemented yet...
 		this.blocks = blocks;
 		this.blockLight = blockLight;
 		this.skyLight = skyLight;
@@ -43,15 +43,16 @@ public class Section {
 		return this.skyLight.get(x, y, x);
 	}
 	
-	public void writeToJava(ByteBuf buf) {
+	public void writeToJavaNetwork(ByteBuf buf) {
 		buf.writeByte(13);
 	}
 	
-	public void writeToBedrock(ByteBuf buf) {
+	public void writeToBedrockNetwork(ByteBuf buf) {
 		
 	}
 	
 	public void save(CompoundTag nbt) {
+		
 	}
 	
 }

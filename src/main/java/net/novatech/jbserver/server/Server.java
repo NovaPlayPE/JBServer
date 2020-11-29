@@ -21,6 +21,7 @@ import net.novatech.jbserver.plugin.PluginManager;
 import net.novatech.jbserver.plugin.SimplePluginManager;
 import net.novatech.jbserver.plugin.java.JavaPluginLoader;
 import net.novatech.jbserver.scheduler.ServerScheduler;
+import net.novatech.jbserver.server.settings.ModulesSettings;
 import net.novatech.jbserver.server.settings.ServerSettings;
 import net.novatech.jbserver.utils.ConsoleColor;
 import net.novatech.jbserver.utils.Logger;
@@ -28,9 +29,10 @@ import net.novatech.jbserver.utils.Logger;
 public class Server {
 	
 	private static Server instance = null;
-
 	
 	private ServerSettings settings = null;
+	private ModulesSettings modulesSettings = null;
+	
 	private ServerScheduler scheduler = null;
 	private Network network = null;
 	private Logger logger = null;
@@ -45,7 +47,6 @@ public class Server {
 	
 	private boolean isRunning = true;
 	private boolean isStopped = false;
-	private Config properties;
 	private int tickCounter = 0;
 	private long nextTick = 0;
 	
@@ -65,7 +66,45 @@ public class Server {
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> {}));
 		Thread.currentThread().setName("JBServer");
 		
-		this.properties = new Config(PathManager.dataPath + "server.properties", Config.PROPERTIES, new ConfigSection() {
+		loadSettings();
+		enableFactory();
+		enableNetwork();
+		
+		this.commandSender = new ConsoleCommandSender();
+		this.commandMap = new CommandMap(this);
+		this.pool.execute(() -> {
+			Thread.currentThread().setName("JBServer-Commands");
+			this.getCommandMap().dispatch(this.commandSender,
+					command -> getLogger().error("Command " + command + " not found"));
+		});
+		
+		scheduler = new ServerScheduler();
+		enablePlugins();
+
+		this.settings.getConfigFile().save(true);
+		this.modulesSettings.getConfigFile().save(true);
+
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			this.isStopped = true;
+			
+			getLogger().info("Shutting down network");
+			getNetwork().endup();
+			
+			getLogger().info("Disabling all plugins");
+			getPluginManager().disablePlugins();
+
+			getLogger().info("Disabling event handlers");
+			HandlerList.unregisterAll();
+
+			getLogger().info("Stopping all tasks");
+			this.scheduler.cancelAllTasks();
+			this.scheduler.mainThreadHeartbeat(Integer.MAX_VALUE);
+		}));
+		start();
+	}
+	
+	public void loadSettings() {
+		this.settings = new ServerSettings(new Config(PathManager.dataPath + "server.properties", Config.PROPERTIES, new ConfigSection() {
 			{
 				//adresses
 				put("server-ip", "0.0.0.0");
@@ -92,42 +131,12 @@ public class Server {
 				put("enable-rcon",false);
 				put("online-mode",true);
 			}
-		});
-		this.settings = new ServerSettings(this.properties);
-		
-		enableFactory();
-		enableNetwork();
-		
-		this.commandSender = new ConsoleCommandSender();
-		this.commandMap = new CommandMap(this);
-		this.pool.execute(() -> {
-			Thread.currentThread().setName("JBServer-Commands");
-			this.getCommandMap().dispatch(this.commandSender,
-					command -> getLogger().error("Command " + command + " not found"));
-		});
-		
-		scheduler = new ServerScheduler();
-		enablePlugins();
-
-		this.properties.save(true);
-
-		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-			this.isStopped = true;
-			
-			getLogger().info("Shutting down network");
-			getNetwork().endup();
-			
-			getLogger().info("Disabling all plugins");
-			getPluginManager().disablePlugins();
-
-			getLogger().info("Disabling event handlers");
-			HandlerList.unregisterAll();
-
-			getLogger().info("Stopping all tasks");
-			this.scheduler.cancelAllTasks();
-			this.scheduler.mainThreadHeartbeat(Integer.MAX_VALUE);
 		}));
-		start();
+		this.modulesSettings = new ModulesSettings(new Config(PathManager.dataPath + "modules.yml", Config.YAML, new ConfigSection() {
+			{
+				put("ai-module", true);
+			}
+		}));
 	}
 	
 	public void enableFactory() {
@@ -207,6 +216,7 @@ public class Server {
 	public String getApiVersion() { return JBMain.API_VERSION;}
 	
 	public ServerSettings getServerSettings() { return this.settings; }
+	public ModulesSettings getModulesSettings() { return this.modulesSettings; }
 	
 	public Network getNetwork() {return this.network;}
 	

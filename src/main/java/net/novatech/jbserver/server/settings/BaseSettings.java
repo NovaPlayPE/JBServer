@@ -10,6 +10,10 @@ public abstract class BaseSettings {
 		this.config = config;
 	}
 	
+	public Config getConfigFile() {
+		return this.config;
+	}
+	
 	public Object getConfig(String variable) {
 		return this.getConfig(variable, null);
 	}

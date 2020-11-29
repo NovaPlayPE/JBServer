@@ -2,7 +2,10 @@ package net.novatech.jbserver.utils;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.UUID;
+import java.util.*;
+
+import net.novatech.library.math.*;
+import net.novatech.library.nbt.tags.*;
 
 public class Utils {
 
@@ -158,6 +161,32 @@ public class Utils {
 		if ('a' <= ch && ch <= 'f')
 			return ch - 'a' + 10;
 		return -1;
+	}
+	
+
+	
+	public static CompoundTag getDefaultEntityPosition(Vector3d posVector) {
+		return getDefaultEntityPosition(posVector, new Vector3d(0,0,0));
+	}
+	
+	public static CompoundTag getDefaultEntityPosition(Vector3d posVector, Vector3d motionVector) {
+		return getDefaultEntityPosition(posVector, motionVector, new Rotation(0,0));
+	}
+	
+	public static CompoundTag getDefaultEntityPosition(Vector3d posVector, Vector3d motionVector, Rotation rotation) {
+		CompoundTag nbt = new CompoundTag("").
+				add(new ListTag("Pos")
+						.add(new DoubleTag("", posVector.getX()))
+						.add(new DoubleTag("", posVector.getY()))
+						.add(new DoubleTag("", posVector.getZ())))
+				.add(new ListTag("Motion")
+						.add(new DoubleTag("", motionVector.getX()))
+						.add(new DoubleTag("", motionVector.getY()))
+						.add(new DoubleTag("", motionVector.getZ())))
+				.add(new ListTag("Rotation")
+						.add(new FloatTag("", rotation.getYaw()))
+						.add(new FloatTag("", rotation.getPitch())));
+		return nbt;
 	}
 
 }
