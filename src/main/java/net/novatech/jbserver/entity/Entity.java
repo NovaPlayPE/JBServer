@@ -6,26 +6,26 @@ import net.novatech.library.nbt.tags.CompoundTag;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Entity {
+public abstract class Entity implements IEntity{
 	
-	private EntityBuilder entityBuilder = null;
+	private EntityType entityType = null;
 	private CompoundTag compoundTag = null;
 	
 	@Getter
 	@Setter
 	private Location location = null;
 	
-	public Entity(EntityBuilder builder) {
-		this.entityBuilder = builder;
+	public Entity(EntityType type) {
+		this.entityType = type;
 		init();
 	}
 		
-	public EntityBuilder getEntityBuilder() {
-		return this.entityBuilder;
+	public EntityType getEntityType() {
+		return this.entityType;
 	}
 	
 	public void init() {
-		this.location = new Location(getEntityBuilder().getWorld(), getEntityBuilder().getPositionVector(), getEntityBuilder().getRotation());
+		
 	}
 	
 	public void save() {

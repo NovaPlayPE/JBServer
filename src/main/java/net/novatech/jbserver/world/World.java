@@ -6,6 +6,7 @@ import net.novatech.jbserver.material.MaterialBlock;
 import net.novatech.jbserver.server.Server;
 import net.novatech.jbserver.world.chunk.ChunkManager;
 import net.novatech.jbserver.world.provider.BaseWorldProvider;
+import net.novatech.library.math.Vector3d;
 
 public class World {
 	
@@ -19,6 +20,9 @@ public class World {
 	private BaseWorldProvider worldProvider = null;
 	
 	@Getter
+	private Vector3d worldSpawn = null;
+	
+	@Getter
 	private ChunkManager chunkManager = null;
 	
 	public World(Server server, String worldId, BaseWorldProvider provider) {
@@ -29,6 +33,7 @@ public class World {
 		
 		this.chunkManager = new ChunkManager(this, provider);
 	}
+	
 	
 	public void init() {
 		
