@@ -1,5 +1,6 @@
 package net.novatech.jbserver.entity;
 
+import net.novatech.jbserver.player.Player;
 import net.novatech.jbserver.world.Location;
 import net.novatech.library.nbt.tags.CompoundTag;
 
@@ -15,17 +16,27 @@ public abstract class Entity implements IEntity{
 	@Setter
 	private Location location = null;
 	
+	@Getter
+	private EntityBuilder entityBuilder = null;
+	
 	public Entity(EntityType type) {
 		this.entityType = type;
-		init();
 	}
 		
 	public EntityType getEntityType() {
 		return this.entityType;
 	}
 	
-	public void init() {
+	public void spawnEntity() {
 		
+	}
+	
+	public void spawnEntity(Player viewer) {
+		
+	}
+	
+	public void init(EntityBuilder builder) {
+		this.entityBuilder = builder;
 	}
 	
 	public void save() {

@@ -44,7 +44,7 @@ public class ChunkSection {
 	}
 	
 	public void writeToJavaNetwork(ByteBuf buf) {
-		buf.writeByte(13);
+		
 	}
 	
 	public void writeToBedrockNetwork(ByteBuf buf) {
