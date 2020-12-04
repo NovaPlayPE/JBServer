@@ -11,6 +11,7 @@ import net.novatech.jbserver.command.CommandMap;
 import net.novatech.jbserver.command.ConsoleCommandSender;
 import net.novatech.jbserver.config.Config;
 import net.novatech.jbserver.config.ConfigSection;
+import net.novatech.jbserver.event.EventManager;
 import net.novatech.jbserver.event.HandlerList;
 import net.novatech.jbserver.factory.FactoryManager;
 import net.novatech.jbserver.manager.PathManager;
@@ -41,6 +42,7 @@ public class Server {
 	private FactoryManager factoryManager = null;
 
 	private PluginManager pluginManager = null;
+	private EventManager eventManager = null;
 	
 	private ConsoleCommandSender commandSender = new ConsoleCommandSender();
 	private CommandMap commandMap = null;
@@ -157,6 +159,7 @@ public class Server {
 	public void enablePlugins() {
 		this.logger.info(ConsoleColor.GREEN + "Loading all plugins");
 		this.pluginManager = new SimplePluginManager(this);
+		this.eventManager = new EventManager(this);
 		this.pluginManager.registerInterface(JavaPluginLoader.class);
 		this.pluginManager.loadPlugins(PathManager.pluginPath);
 		
@@ -211,6 +214,7 @@ public class Server {
 	
 	public ServerScheduler getScheduler() { return this.scheduler; }
 	public PluginManager getPluginManager() { return this.pluginManager; }
+	public EventManager getEventManager() { return this.eventManager; }
 	
 	public String getVersion() { return JBMain.VERSION;}
 	public String getApiVersion() { return JBMain.API_VERSION;}

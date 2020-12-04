@@ -5,6 +5,7 @@ import java.io.FilenameFilter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
 import net.novatech.jbserver.event.*;
