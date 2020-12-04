@@ -25,12 +25,6 @@ public interface PluginManager {
 	void disablePlugin(Plugin plugin);
 	void disablePlugins();
 	void clearPlugins();
-	void callEvent(Event event);
-	void registerEvents(EventListener listener, Plugin plugin);
-	void registerEvent(Class<? extends Event> event, EventListener listener, EventPriority priority, EventExecutor executor, Plugin plugin) throws PluginException;
-	void registerEvent(Class<? extends Event> event, EventListener listener, EventPriority priority, EventExecutor executor, Plugin plugin, boolean ignoreCancelled) throws PluginException;
-	HandlerList getEventListeners(Class<? extends Event> type) throws IllegalAccessException;
-	Class<? extends Event> getRegistrationClass(Class<? extends Event> clazz) throws IllegalAccessException;
 	boolean useTimings();
 	void setUseTimings(boolean value);
 }

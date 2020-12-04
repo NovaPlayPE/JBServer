@@ -12,7 +12,6 @@ import net.novatech.jbserver.command.ConsoleCommandSender;
 import net.novatech.jbserver.config.Config;
 import net.novatech.jbserver.config.ConfigSection;
 import net.novatech.jbserver.event.EventManager;
-import net.novatech.jbserver.event.HandlerList;
 import net.novatech.jbserver.factory.FactoryManager;
 import net.novatech.jbserver.manager.PathManager;
 import net.novatech.jbserver.network.Network;
@@ -96,7 +95,7 @@ public class Server {
 			getPluginManager().disablePlugins();
 
 			getLogger().info("Disabling event handlers");
-			HandlerList.unregisterAll();
+			getEventManager().unregisterEverything();
 
 			getLogger().info("Stopping all tasks");
 			this.scheduler.cancelAllTasks();

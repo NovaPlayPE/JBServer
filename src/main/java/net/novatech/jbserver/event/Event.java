@@ -1,5 +1,7 @@
 package net.novatech.jbserver.event;
 
+import net.novatech.jbserver.server.Server;
+
 public abstract class Event {
 
     protected String eventName = null;
@@ -25,6 +27,10 @@ public abstract class Event {
 
     public void setCancelled() {
         setCancelled(true);
+    }
+    
+    public void call() {
+    	Server.getInstance().getEventManager().callEvent(this);
     }
 
 

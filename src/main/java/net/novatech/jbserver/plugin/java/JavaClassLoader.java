@@ -21,7 +21,7 @@ public class JavaClassLoader extends URLClassLoader {
 	}
 	
 	protected Class<?> findClass(String name, boolean checkGlobal) throws ClassNotFoundException {
-		if (name.startsWith("net.novaplay.jbproxy.") || name.startsWith("net.minecraft.")) {
+		if (name.startsWith("net.novaplay.jbserver.") || name.startsWith("net.novaplay.jbproxy.") || name.startsWith("net.minecraft.")) {
 			throw new ClassNotFoundException(name);
 		}
 		Class<?> result = classes.get(name);
