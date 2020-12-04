@@ -67,6 +67,14 @@ public class EntityBuilder {
 		return newEntity(pos, motion, rot, Server.getInstance().getFactoryManager().getWorldFactory().getDefaultWorld());
 	}
 	
+	/**
+	 * This method is used, when we are creating new entity, builder class will throw default nbt values
+	 * @param pos
+	 * @param motion
+	 * @param rot
+	 * @param world
+	 * @return
+	 */
 	public static EntityBuilder newEntity(@NonNull Vector3d pos, Vector3d motion, Rotation rot, World world) {
 		EntityBuilder builder = new EntityBuilder();
 		
