@@ -17,6 +17,11 @@ public abstract class EventListener {
 		}
 	}
 	
+	@SuppressWarnings("unused")
+	private void registerEventHandler(Class<? extends Event> clazz, EventPriority priority, Consumer<Event> consumer) {
+		
+	}
+	
 	public HashMap<Class<? extends Event>, Consumer<Event>> getEventHandlers(){
 		return this.eventHandlers;
 	}

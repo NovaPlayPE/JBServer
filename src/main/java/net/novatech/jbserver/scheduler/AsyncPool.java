@@ -24,7 +24,7 @@ public class AsyncPool {
                 60, TimeUnit.MILLISECONDS, new SynchronousQueue<>(),
                 runnable -> new Thread(runnable) {{
                     setDaemon(true);
-                    setName(String.format("Nukkit Asynchronous Task Handler #%s", currentThread.incrementAndGet()));
+                    setName(String.format("JBServer Asynchronous Task Handler #%s", currentThread.incrementAndGet()));
                 }}
         );
         this.server = server;
