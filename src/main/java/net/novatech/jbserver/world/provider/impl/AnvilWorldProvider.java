@@ -1,11 +1,15 @@
 package net.novatech.jbserver.world.provider.impl;
 
 import java.io.File;
+import java.io.IOException;
 
 import net.novatech.jbserver.manager.PathManager;
+import net.novatech.jbserver.server.Server;
 import net.novatech.jbserver.world.WorldData;
 import net.novatech.jbserver.world.chunk.Chunk;
 import net.novatech.jbserver.world.provider.BaseWorldProvider;
+import net.novatech.library.nbt.NBTIO;
+import net.novatech.library.nbt.tags.CompoundTag;
 
 public class AnvilWorldProvider extends BaseWorldProvider{
 	
@@ -27,7 +31,7 @@ public class AnvilWorldProvider extends BaseWorldProvider{
 
 	@Override
 	public void load() {
-		// TODO Auto-generated method stub
+		this.worldData = loadWorldData(new File(getAbsolutePath() + "/level.dat"));
 		
 	}
 
@@ -39,7 +43,15 @@ public class AnvilWorldProvider extends BaseWorldProvider{
 
 	@Override
 	public WorldData loadWorldData(File file) {
-		// TODO Auto-generated method stub
+		if(isValid()) {
+			CompoundTag nbt;
+			try {
+				nbt = NBTIO.read(file);
+				return WorldData.readFromNbt(nbt);
+			} catch (IOException e) {
+				Server.getInstance().getLogger().logException(e);
+			}
+		}
 		return null;
 	}
 

@@ -34,9 +34,13 @@ public class World {
 		this.chunkManager = new ChunkManager(this, provider);
 	}
 	
-	
 	public void init() {
 		
+	}
+	
+	public void load() {
+		this.worldProvider.load();
+		WorldData worldData = this.worldProvider.getWorldData();
 	}
 	
 	public void unload() {

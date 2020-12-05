@@ -4,13 +4,16 @@ import java.util.*;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.novatech.library.math.Vector3i;
+
+import net.novatech.library.math.Vector3d;
+import net.novatech.library.nbt.tags.*;
+import net.novatech.library.nbt.NBTIO;
 
 public class WorldData {
 	
 	@Getter
 	@Setter
-	public String name;
+	public String worldName;
 	
 	@Getter
 	@Setter
@@ -34,7 +37,7 @@ public class WorldData {
 	
 	@Getter
 	@Setter
-	public Vector3i spawn;
+	public Vector3d spawn;
 	
 	@Getter
 	@Setter
@@ -51,4 +54,10 @@ public class WorldData {
 	@Getter
 	@Setter
 	public int thunderingTime = 0;
+	
+	public static WorldData readFromNbt(CompoundTag tag) {
+		WorldData data = new WorldData();
+		
+		return data;
+	}
 }
