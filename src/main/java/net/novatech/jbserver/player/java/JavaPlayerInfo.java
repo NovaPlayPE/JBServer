@@ -6,8 +6,8 @@ import net.novatech.jbserver.player.PlayerInfo;
 
 public class JavaPlayerInfo extends PlayerInfo {
 
-	public JavaPlayerInfo(String address, int port, UUID uuid) {
-		super(address, port, uuid);
+	public JavaPlayerInfo(String username, String address, int port, UUID uuid) {
+		super(username, address, port, uuid);
 	}
 
 }

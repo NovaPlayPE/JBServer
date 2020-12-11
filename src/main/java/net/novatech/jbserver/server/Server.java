@@ -23,7 +23,7 @@ import net.novatech.jbserver.plugin.java.JavaPluginLoader;
 import net.novatech.jbserver.scheduler.ServerScheduler;
 import net.novatech.jbserver.server.settings.ModulesSettings;
 import net.novatech.jbserver.server.settings.ServerSettings;
-import net.novatech.jbserver.utils.ConsoleColor;
+import net.novatech.jbserver.utils.Color;
 import net.novatech.jbserver.utils.Logger;
 
 public class Server {
@@ -156,7 +156,7 @@ public class Server {
 	}
 	
 	public void enablePlugins() {
-		this.logger.info(ConsoleColor.GREEN + "Loading all plugins");
+		this.logger.info(Color.GREEN + "Loading all plugins");
 		this.pluginManager = new SimplePluginManager(this);
 		this.eventManager = new EventManager(this);
 		this.pluginManager.registerInterface(JavaPluginLoader.class);
@@ -174,7 +174,7 @@ public class Server {
 	}
 	
 	public void start() {
-		getLogger().info(ConsoleColor.GREEN + "Server has been started!, Type help for help (?)");
+		getLogger().info(Color.GREEN + "Server has been started!, Type help for help (?)");
 		this.nextTick = System.currentTimeMillis();
 		while (this.isRunning) {
 			try {

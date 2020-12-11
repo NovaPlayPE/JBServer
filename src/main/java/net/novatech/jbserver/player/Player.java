@@ -5,6 +5,7 @@ import net.novatech.jbserver.entity.EntityHumanoid;
 import net.novatech.jbserver.entity.EntityType;
 import net.novatech.jbserver.entity.IEntity;
 import net.novatech.jbserver.network.NetworkSession;
+import net.novatech.jbserver.network.protocol.impl.JBTextPacket;
 
 public abstract class Player extends EntityHumanoid implements CommandSender, IEntity{
 	
@@ -17,19 +18,20 @@ public abstract class Player extends EntityHumanoid implements CommandSender, IE
 	
 	@Override
 	public void sendMessage(String message) {
-		// TODO Auto-generated method stub
+		JBTextPacket textPacket = new JBTextPacket();
+		textPacket.content = message;
 		
+		getSession().sendPacket(textPacket);
 	}
 
 	@Override
 	public void setOp(boolean value) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public boolean isOp() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

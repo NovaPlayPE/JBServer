@@ -40,6 +40,7 @@ public class WorldFactory implements Factory {
 	public World loadWorld(String worldname, BaseWorldProvider worldProvider) {
 		World world = new World(Server.getInstance(),worldname, worldProvider);
 		worlds.put(worldname, world);
+		world.load();
 		return world;
 	}
 	
@@ -51,12 +52,14 @@ public class WorldFactory implements Factory {
 	public World createNewWorld(String worldname, WorldData data, BaseWorldProvider provider) {
 		World world = new World(Server.getInstance(),worldname,provider);
 		worlds.put(worldname, world);
+		world.init();
 		return world;
 	}
 	
 	public void unloadWorld(String worldname) {
 		if(worlds.containsKey(worldname)) {
 			worlds.get(worldname).unload();
+			worlds.remove(worldname);
 		}
 	}
 	

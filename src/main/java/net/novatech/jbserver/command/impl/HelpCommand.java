@@ -7,7 +7,7 @@ import net.novatech.jbserver.command.CommandSender;
 import net.novatech.jbserver.command.ConsoleCommandSender;
 import net.novatech.jbserver.player.Player;
 import net.novatech.jbserver.server.Server;
-import net.novatech.jbserver.utils.ConsoleColor;
+import net.novatech.jbserver.utils.Color;
 
 public class HelpCommand extends Command {
 
@@ -22,7 +22,7 @@ public class HelpCommand extends Command {
 	public boolean execute(CommandSender sender, String label, String[] args) {
 		for(Command commands : Server.getInstance().getCommandMap().getCommands()) {
 			if(sender instanceof ConsoleCommandSender) {
-				sender.sendMessage(ConsoleColor.YELLOW + commands.getName() + ConsoleColor.GREEN + " - " + ConsoleColor.WHITE + commands.getDescription());
+				sender.sendMessage(Color.YELLOW + commands.getName() + Color.GREEN + " - " + Color.WHITE + commands.getDescription());
 			} else if(sender instanceof Player) {
 				
 			}

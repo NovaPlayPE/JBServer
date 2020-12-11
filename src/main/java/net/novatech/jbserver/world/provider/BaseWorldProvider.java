@@ -2,6 +2,7 @@ package net.novatech.jbserver.world.provider;
 
 import java.io.File;
 
+import lombok.Getter;
 import net.novatech.jbserver.manager.PathManager;
 import net.novatech.jbserver.world.WorldData;
 import net.novatech.jbserver.world.chunk.Chunk;
@@ -9,6 +10,7 @@ import net.novatech.jbserver.world.chunk.Chunk;
 public abstract class BaseWorldProvider {
 	
 	protected String path;
+	@Getter
 	public WorldData worldData;
 	
 	public BaseWorldProvider(String path) {

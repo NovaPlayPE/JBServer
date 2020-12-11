@@ -28,7 +28,7 @@ public class JavaLoginHandler implements ServerLoginHandler{
 		GameProfile profile = session.getFlag(MinecraftConstants.PROFILE_KEY);
 		UUID uid = profile.getId();
 		JavaSession sesion = new JavaSession(session);
-		JavaPlayerInfo info = new JavaPlayerInfo(session.getLocalAddress().toString(),session.getPort(),uid);
+		JavaPlayerInfo info = new JavaPlayerInfo(profile.getName(), session.getLocalAddress().toString(),session.getPort(),uid);
 		
 		Server.getInstance().getFactoryManager().getPlayerFactory().addPlayer(new JavaPlayer(sesion, info));
 	}
