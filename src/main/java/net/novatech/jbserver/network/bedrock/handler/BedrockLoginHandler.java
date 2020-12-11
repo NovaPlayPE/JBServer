@@ -41,7 +41,7 @@ public class BedrockLoginHandler implements BedrockPacketHandler {
 			return true;
 		}
 		
-		BedrockPlayerInfo info = new BedrockPlayerInfo(getSession().getServerSession().getAddress().getAddress().toString(),
+		BedrockPlayerInfo info = new BedrockPlayerInfo(data.getUsername(), getSession().getServerSession().getAddress().getAddress().toString(),
 				getSession().getServerSession().getAddress().getPort(),
 				data.getClientUUID());
 		Server.getInstance().getFactoryManager().getPlayerFactory().addPlayer(new BedrockPlayer(getSession(),info));

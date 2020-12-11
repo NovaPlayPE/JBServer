@@ -13,7 +13,7 @@ import net.novatech.jbserver.plugin.Plugin;
 import net.novatech.jbserver.plugin.PluginDescription;
 import net.novatech.jbserver.plugin.PluginLoader;
 import net.novatech.jbserver.server.Server;
-import net.novatech.jbserver.utils.ConsoleColor;
+import net.novatech.jbserver.utils.Color;
 import net.novatech.jbserver.utils.Logger;
 import net.novatech.jbserver.utils.Utils;
 
@@ -134,7 +134,7 @@ public class JavaPlugin implements Plugin {
 	public void saveConfig() {
 		boolean save = getConfig().save();
 		if(!save) {
-			this.getServer().getLogger().error(ConsoleColor.RED + "Couldn't save configuration file to " + this.configurationFile.toString());
+			this.getServer().getLogger().error(Color.RED + "Couldn't save configuration file to " + this.configurationFile.toString());
 		}
 	}
 
