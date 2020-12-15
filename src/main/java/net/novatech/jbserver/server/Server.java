@@ -125,6 +125,7 @@ public class Server {
 				put("world-name", "world");
 				put("world-type", "normal");
 				put("world-seed", 0);
+				put("world-provider", "anvil");
 				put("allow-nether",false);
 				put("allow-end",false);
 				//query

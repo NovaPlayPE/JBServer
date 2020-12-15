@@ -92,6 +92,10 @@ public class ServerSettings extends BaseSettings{
 		return this.getPropertyString("world-type");
 	}
 	
+	public String getDefaultWorldProvider() {
+		return this.getPropertyString("world-provider");
+	}
+	
 	public boolean isNetherAllowed() {
 		return this.getPropertyBoolean("allow-nether");
 	}
