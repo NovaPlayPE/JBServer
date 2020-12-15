@@ -16,7 +16,7 @@ public class WorldProviderManager {
 		providers.put(id, provider);
 	}
 	
-	public BaseWorldProvider tryGetProvider(String path) {
+	public static BaseWorldProvider tryGetProvider(String path) {
 		BaseWorldProvider provider = null;
 		for(Class<? extends BaseWorldProvider> provid : providers.values()) {
 			try {
@@ -30,6 +30,20 @@ public class WorldProviderManager {
 				
 			}
 		}
+		return provider;
+	}
+	
+	public static BaseWorldProvider getDefaultProvider(String string, String path) {
+		BaseWorldProvider provider = null;
+		Class<? extends BaseWorldProvider> provid = providers.get(string);
+		try {
+				Constructor<? extends BaseWorldProvider> construct = provid.getConstructor();
+				construct.setAccessible(true);
+				BaseWorldProvider provajd = construct.newInstance(path);
+				if(provajd.isValid()) {
+					provider = provajd;
+				}
+		}catch(Exception e) {}
 		return provider;
 	}
 	

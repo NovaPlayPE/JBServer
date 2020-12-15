@@ -23,6 +23,17 @@ public class WorldFactory implements Factory {
 		WorldProviderManager.registerWorldProvider(WorldProviderManager.ANVIL, AnvilWorldProvider.class);
 		WorldProviderManager.registerWorldProvider(WorldProviderManager.LEVELDB, LevelDBWorldProvider.class);
 		WorldProviderManager.registerWorldProvider(WorldProviderManager.NPWORLD, NPWorldWorldProvider.class);
+		
+		String worldName = manager.getServer().getServerSettings().getDefaultWorldName();
+		setDefaultWorld(doesWorldExist(worldName) ? loadWorld(worldName) : createNewWorld(worldName, getDefaultWorldData()));
+	}
+	
+	public boolean doesWorldExist(String worldname) {
+		return doesWorldExist(worldname, new AnvilWorldProvider(worldname));
+	}
+	
+	public boolean doesWorldExist(String worldname, BaseWorldProvider worldProvider) {
+		return worldProvider.isValid();
 	}
 
 	public World setDefaultWorld(World world) {
@@ -34,7 +45,7 @@ public class WorldFactory implements Factory {
 	}
 	
 	public World loadWorld(String worldname) {
-		return loadWorld(worldname, new AnvilWorldProvider(worldname));
+		return loadWorld(worldname, WorldProviderManager.tryGetProvider(worldname));
 	}
 	
 	public World loadWorld(String worldname, BaseWorldProvider worldProvider) {
@@ -45,7 +56,7 @@ public class WorldFactory implements Factory {
 	}
 	
 	public World createNewWorld(String worldname, WorldData data) {
-		return createNewWorld(worldname, data, null);
+		return createNewWorld(worldname, data, WorldProviderManager.getDefaultProvider(Server.getInstance().getServerSettings().getDefaultWorldProvider(), worldname));
 	}
 	
 	
@@ -67,6 +78,10 @@ public class WorldFactory implements Factory {
 		if(worlds.containsKey(name)) {
 			return worlds.get(name);
 		}
+		return null;
+	}
+	
+	private WorldData getDefaultWorldData() {
 		return null;
 	}
 	
