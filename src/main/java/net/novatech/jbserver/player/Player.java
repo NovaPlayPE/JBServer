@@ -1,9 +1,9 @@
 package net.novatech.jbserver.player;
 
 import net.novatech.jbserver.command.CommandSender;
-import net.novatech.jbserver.entity.EntityHumanoid;
 import net.novatech.jbserver.entity.EntityType;
 import net.novatech.jbserver.entity.IEntity;
+import net.novatech.jbserver.entity.human.EntityHumanoid;
 import net.novatech.jbserver.network.NetworkSession;
 import net.novatech.jbserver.network.protocol.impl.JBTextPacket;
 

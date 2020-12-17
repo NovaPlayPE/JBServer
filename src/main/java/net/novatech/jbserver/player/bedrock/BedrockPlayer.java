@@ -1,6 +1,6 @@
 package net.novatech.jbserver.player.bedrock;
 
-import net.novatech.jbserver.entity.EntityHumanoid;
+import net.novatech.jbserver.entity.human.EntityHumanoid;
 import net.novatech.jbserver.network.NetworkSession;
 import net.novatech.jbserver.network.bedrock.BedrockSession;
 import net.novatech.jbserver.player.Player;
