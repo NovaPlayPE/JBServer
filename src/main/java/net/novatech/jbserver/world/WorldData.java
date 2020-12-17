@@ -56,8 +56,15 @@ public class WorldData {
 	public int thunderingTime = 0;
 	
 	public static WorldData readFromNbt(CompoundTag tag) {
+		tag.add(new StringTag("Kek", "lol"));
 		WorldData data = new WorldData();
-		
+		data.setSpawn(new Vector3d(
+				tag.getDoubleValue("SpawnX").getValue(),
+				tag.getDoubleValue("SpawnY").getValue(),
+				tag.getDoubleValue("SpawnZ").getValue()
+			));
+		data.setWorldName(tag.getStringValue("WorldName").getValue());
+		data.setTime(tag.getIntValue("Time").getValue());
 		return data;
 	}
 }

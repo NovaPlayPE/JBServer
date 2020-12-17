@@ -21,12 +21,19 @@ public class FactoryManager {
 	public void init(Server server) {
 		this.server = server;
 		
+		entityFactory = new EntityFactory();
+		entityFactory.init(this);
+		
 		worldFactory = new WorldFactory();
 		worldFactory.init(this);
 		
 		playerFactory = new PlayerFactory();
 		playerFactory.init(this);
 		
+	}
+	
+	public EntityFactory getEntityFactory() {
+		return (EntityFactory)entityFactory;
 	}
 	
 	public PlayerFactory getPlayerFactory() {

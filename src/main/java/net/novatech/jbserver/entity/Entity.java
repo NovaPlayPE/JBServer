@@ -43,4 +43,8 @@ public abstract class Entity implements IEntity{
 		
 	}
 	
+	public void tickEntity(int tick) {
+		
+	}
+	
 }

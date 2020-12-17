@@ -15,7 +15,7 @@ public class LevelDBWorldProvider extends BaseWorldProvider{
 
 	@Override
 	public boolean isValid() {
-		if(new File(getAbsolutePath() + "/level.dat").exists() && new File(getAbsolutePath() + "/db/").isDirectory()) {
+		if((new File(getAbsolutePath() + "/level.dat").exists() && new File(getAbsolutePath() + "/db/").isDirectory()) || new File(getAbsolutePath() + ".mcworld").exists()) {
 			return true;
 		}
 		return false;

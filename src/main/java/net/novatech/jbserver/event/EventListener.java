@@ -19,7 +19,7 @@ public abstract class EventListener {
 	
 	@SuppressWarnings("unused")
 	private void registerEventHandler(Class<? extends Event> clazz, EventPriority priority, Consumer<Event> consumer) {
-		
+		throw new EventException("EventPriority isn't available yet");
 	}
 	
 	public HashMap<Class<? extends Event>, Consumer<Event>> getEventHandlers(){

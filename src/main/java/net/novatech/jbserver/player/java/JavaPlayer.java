@@ -3,8 +3,8 @@ package net.novatech.jbserver.player.java;
 import java.io.File;
 
 import net.novatech.jbserver.entity.EntityBuilder;
-import net.novatech.jbserver.entity.EntityHumanoid;
 import net.novatech.jbserver.entity.EntityType;
+import net.novatech.jbserver.entity.human.EntityHumanoid;
 import net.novatech.jbserver.manager.PathManager;
 import net.novatech.jbserver.network.NetworkSession;
 import net.novatech.jbserver.network.java.JavaSession;
