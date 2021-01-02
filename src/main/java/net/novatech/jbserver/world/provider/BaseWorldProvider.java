@@ -13,8 +13,8 @@ public abstract class BaseWorldProvider {
 	@Getter
 	public WorldData worldData;
 	
-	public BaseWorldProvider(String path) {
-		this.path = path;
+	public BaseWorldProvider(String worldName) {
+		this.path = worldName;
 	}
 	
 	public String getPath() {

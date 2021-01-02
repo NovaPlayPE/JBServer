@@ -1,5 +1,6 @@
 package net.novatech.jbserver.factory;
 
+import net.novatech.jbserver.event.world.WorldLoadEvent;
 import net.novatech.jbserver.manager.PathManager;
 import net.novatech.jbserver.server.Server;
 import net.novatech.jbserver.world.World;
@@ -11,6 +12,7 @@ import net.novatech.jbserver.world.provider.impl.AnvilWorldProvider;
 import net.novatech.jbserver.world.provider.impl.LevelDBWorldProvider;
 import net.novatech.jbserver.world.provider.impl.NPWorldWorldProvider;
 import net.novatech.library.math.Vector3i;
+import net.novatech.library.math.Vector3d;
 
 import java.util.*;
 
@@ -49,9 +51,16 @@ public class WorldFactory implements Factory {
 	}
 	
 	public World loadWorld(String worldname, BaseWorldProvider worldProvider) {
+		long start = System.currentTimeMillis();
+		
 		World world = new World(Server.getInstance(),worldname, worldProvider);
 		worlds.put(worldname, world);
 		world.load();
+		
+		long time = System.currentTimeMillis() - start; // ToDo: check when world is fully loaded
+		WorldLoadEvent ev = new WorldLoadEvent(world, time);
+		ev.call();
+		
 		return world;
 	}
 	
@@ -82,7 +91,17 @@ public class WorldFactory implements Factory {
 	}
 	
 	private WorldData getDefaultWorldData() {
-		return null;
+		WorldData data = new WorldData();
+		
+		data.setSpawn(new Vector3d(128, 70, 128));
+		data.setRandomSeed(Server.getInstance().getServerSettings().getDefaultWorldSeed());
+		data.setGeneratorName(Server.getInstance().getServerSettings().getDefaultWorldType());
+		data.setGeneratorVersion(0);
+		data.setTime(6000);
+		data.setRaining(false);
+		data.setThundering(false);
+		
+		return data;
 	}
 	
 }
