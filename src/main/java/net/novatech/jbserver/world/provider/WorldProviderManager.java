@@ -16,13 +16,13 @@ public class WorldProviderManager {
 		providers.put(id, provider);
 	}
 	
-	public static BaseWorldProvider tryGetProvider(String path) {
+	public static BaseWorldProvider tryGetProvider(String worldName) {
 		BaseWorldProvider provider = null;
 		for(Class<? extends BaseWorldProvider> provid : providers.values()) {
 			try {
 				Constructor<? extends BaseWorldProvider> construct = provid.getConstructor();
 				construct.setAccessible(true);
-				BaseWorldProvider provajd = construct.newInstance(path);
+				BaseWorldProvider provajd = construct.newInstance(worldName);
 				if(provajd.isValid()) {
 					provider = provajd;
 				}

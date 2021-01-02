@@ -2,7 +2,7 @@ package net.novatech.jbserver.world;
 
 public enum WorldType {
 	
-	NORMAL("NORMAL",true),
+	NORMAL("NORMAL",false), //npworld is for minigames and smaller worlds, not survival ones
 	FLAT("FLAT",true),
 	VOID("VOID",true),
 	LARGE_BIOMES("LARGEBIOMES",false),
