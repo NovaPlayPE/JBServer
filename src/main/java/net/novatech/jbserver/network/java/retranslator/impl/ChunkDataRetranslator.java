@@ -23,10 +23,6 @@ public class ChunkDataRetranslator extends JavaRetranslator {
 		return packet;
 	}
 
-	/**
-	 * Yeah yeah, I know, that it is crap,
-	 * but I haven't made nbt manager for both libs...
-	 */
 	
 	@Override
 	public Packet translateTo(JBPacket pk) {
