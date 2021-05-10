@@ -1,12 +1,10 @@
 package net.novatech.jbserver.network.bedrock.retranslator.impl;
 
-import com.nukkitx.protocol.bedrock.BedrockPacket;
-import com.nukkitx.protocol.bedrock.packet.TextPacket;
-
 import net.novatech.jbserver.network.bedrock.retranslator.BedrockRetranslator;
 import net.novatech.jbserver.network.protocol.JBPacket;
 import net.novatech.jbserver.network.protocol.impl.JBTextPacket;
 import net.novatech.jbserver.utils.Color;
+import net.novatech.protocol.bedrock.packets.BedrockPacket;
 
 public class TextRetranslator extends BedrockRetranslator{
 
@@ -18,11 +16,7 @@ public class TextRetranslator extends BedrockRetranslator{
 
 	@Override
 	public BedrockPacket translateTo(JBPacket pk) {
-		JBTextPacket p = (JBTextPacket)pk;
-		
-		TextPacket packet = new TextPacket();
-		packet.setMessage(Color.colorizeMC(p.content));
-		return packet;
+		return null;
 	}
 	
 	

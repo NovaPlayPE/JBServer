@@ -1,20 +1,19 @@
 package net.novatech.jbserver.network.bedrock;
 
-import com.nukkitx.protocol.bedrock.BedrockServerSession;
-
 import lombok.Getter;
 import net.novatech.jbserver.network.NetworkSession;
 import net.novatech.jbserver.network.bedrock.retranslator.BedrockRetranslatorSector;
 import net.novatech.jbserver.network.protocol.JBPacket;
+import net.novatech.protocol.bedrock.BedrockSession;
 
-public class BedrockSession implements NetworkSession {
+public class JBBedrockSession implements NetworkSession {
 
-	public BedrockSession(BedrockServerSession session) {
+	public JBBedrockSession(BedrockSession session) {
 		this.serverSession = session;
 	}
 	
 	@Getter
-	private BedrockServerSession serverSession = null;
+	private BedrockSession serverSession = null;
 	
 	@Override
 	public void sendPacket(JBPacket packet) {

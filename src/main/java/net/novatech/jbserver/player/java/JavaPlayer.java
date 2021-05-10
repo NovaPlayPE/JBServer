@@ -7,7 +7,7 @@ import net.novatech.jbserver.entity.EntityType;
 import net.novatech.jbserver.entity.human.EntityHumanoid;
 import net.novatech.jbserver.manager.PathManager;
 import net.novatech.jbserver.network.NetworkSession;
-import net.novatech.jbserver.network.java.JavaSession;
+import net.novatech.jbserver.network.java.JBJavaSession;
 import net.novatech.jbserver.player.Player;
 import net.novatech.jbserver.player.PlayerInfo;
 import net.novatech.jbserver.server.Server;
@@ -20,7 +20,7 @@ public class JavaPlayer extends Player {
 	private NetworkSession session = null;
 	private PlayerInfo playerInfo = null;
 	
-	public JavaPlayer(JavaSession session, PlayerInfo info) {
+	public JavaPlayer(JBJavaSession session, PlayerInfo info) {
 		this.session = session;
 		this.playerInfo = info;
 	}

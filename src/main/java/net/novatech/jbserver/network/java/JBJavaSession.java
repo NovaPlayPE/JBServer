@@ -1,19 +1,18 @@
 package net.novatech.jbserver.network.java;
 
-import com.github.steveice10.packetlib.Session;
-
 import lombok.Getter;
 import net.novatech.jbserver.network.NetworkSession;
 import net.novatech.jbserver.network.protocol.JBPacket;
+import net.novatech.protocol.java.JavaSession;
 
-public class JavaSession implements NetworkSession {
+public class JBJavaSession implements NetworkSession {
 	
-	public JavaSession(Session session) {
+	public JBJavaSession(JavaSession session) {
 		this.serverSession = session;
 	}
 	
 	@Getter
-	private Session serverSession = null;
+	private JavaSession serverSession = null;
 	
 	@Override
 	public void sendPacket(JBPacket packet) {
