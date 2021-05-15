@@ -4,7 +4,7 @@ import net.novatech.jbserver.network.bedrock.retranslator.BedrockRetranslator;
 import net.novatech.jbserver.network.protocol.JBPacket;
 import net.novatech.jbserver.network.protocol.impl.JBChunkDataPacket;
 import net.novatech.jbserver.world.chunk.BedrockChunkData;
-import net.novatech.protocol.bedrock.packets.BedrockPacket;
+import net.novatech.jbprotocol.bedrock.packets.BedrockPacket;
 
 public class ChunkDataRetranslator extends BedrockRetranslator {
 

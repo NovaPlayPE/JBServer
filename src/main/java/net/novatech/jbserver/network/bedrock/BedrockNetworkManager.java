@@ -1,22 +1,28 @@
 package net.novatech.jbserver.network.bedrock;
 
 import java.net.InetAddress;
+
 import java.net.InetSocketAddress;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import net.novatech.jbprotocol.GameSession;
+import net.novatech.jbprotocol.GameVersion;
+import net.novatech.jbprotocol.ProtocolServer;
+import net.novatech.jbprotocol.bedrock.BedrockSession;
+import net.novatech.jbprotocol.listener.LoginListener;
+import net.novatech.jbprotocol.listener.ServerListener;
+import net.novatech.jbprotocol.util.SessionData;
+
+import net.novatech.jbserver.event.player.*;
 import net.novatech.jbserver.network.INetworkManager;
 import net.novatech.jbserver.network.Network;
+import net.novatech.jbserver.player.Player;
+import net.novatech.jbserver.player.PlayerInfo;
 import net.novatech.jbserver.player.bedrock.BedrockPlayer;
 import net.novatech.jbserver.player.bedrock.BedrockPlayerInfo;
 import net.novatech.jbserver.server.Server;
-import net.novatech.protocol.GameSession;
-import net.novatech.protocol.GameVersion;
-import net.novatech.protocol.LoginListener;
-import net.novatech.protocol.ProtocolServer;
-import net.novatech.protocol.ServerListener;
-import net.novatech.protocol.util.SessionData;
 
 import java.util.*;
 
@@ -43,25 +49,28 @@ public class BedrockNetworkManager implements INetworkManager{
 
 				@Override
 				public void sessionConnected(GameSession session) {
-					net.novatech.protocol.bedrock.BedrockSession bedrock = (net.novatech.protocol.bedrock.BedrockSession)session;
+					BedrockSession bedrock = (BedrockSession) session;
 					bedrock.setLoginListener(new LoginListener() {
 						@Override
 						public void loginCompleted(SessionData data) {
-							BedrockPlayerInfo info = new BedrockPlayerInfo(data.getUsername(), 
+							PlayerInfo info = new BedrockPlayerInfo(data.getUsername(), 
 									data.getAddress().getAddress().toString(),
 									data.getAddress().getPort(),
 									data.getUuid());
-							Server.getInstance().getFactoryManager().getPlayerFactory().addPlayer(new BedrockPlayer(new JBBedrockSession(bedrock), info));
+							Player player = new BedrockPlayer(new JBBedrockSession(bedrock), info);
+							Server.getInstance().getFactoryManager().getPlayerFactory().addPlayer(player);
+							
+							PlayerLoginEvent login = new PlayerLoginEvent(player, info);
+							login.call();
 						}
-						
 					});
 					bedrock.setGameListener(new BedrockHandler());
 				}
 
 				@Override
 				public void sessionDisconnected(GameSession session, String cause) {
-					// TODO Auto-generated method stub
-					
+					Player p = Server.getInstance().getFactoryManager().getPlayerFactory().searchPlayerBySession(session);
+					Server.getInstance().getFactoryManager().getPlayerFactory().removePlayer(p);
 				}
 				
 			});

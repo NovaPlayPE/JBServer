@@ -2,10 +2,10 @@ package net.novatech.jbserver.network.bedrock.retranslator;
 
 import java.util.HashMap;
 
+import net.novatech.jbprotocol.bedrock.packets.BedrockPacket;
 import net.novatech.jbserver.network.bedrock.retranslator.impl.*;
 import net.novatech.jbserver.network.protocol.JBPacket;
 import net.novatech.jbserver.network.protocol.JBPacketIdentifier;
-import net.novatech.protocol.bedrock.packets.BedrockPacket;
 
 public class BedrockRetranslatorSector {
 	

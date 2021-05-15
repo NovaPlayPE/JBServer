@@ -3,7 +3,10 @@ package net.novatech.jbserver.factory;
 import java.util.HashMap;
 import java.util.UUID;
 
+import net.novatech.jbprotocol.GameSession;
+
 import net.novatech.jbserver.player.Player;
+import net.novatech.jbserver.network.NetworkSession;
 import net.novatech.jbserver.server.Server;
 
 public class PlayerFactory implements Factory {
@@ -26,12 +29,24 @@ public class PlayerFactory implements Factory {
 		return Server.getInstance().getServerSettings().isDynamicPlayerCountEnabled() ? getPlayerCount() + 1 : Server.getInstance().getServerSettings().getMaxPlayerCount();
 	}
 	
-	public boolean addPlayer(Player player) {
-		return false;
+	public Player searchPlayerBySession(GameSession session) {
+		for(Player p : getOnlinePlayers().values()) {
+			NetworkSession network = p.getSession();
+			if(network.getServerSession() == session) {
+				return p;
+			}
+		}
+		return null;
 	}
 	
-	public boolean removePlayer() {
-		return false;
+	public boolean addPlayer(Player player) {
+		this.players.put(player.getPlayerInfo().getUniqueId(), player);
+		return true;
+	}
+	
+	public boolean removePlayer(Player player) {
+		this.players.remove(player.getPlayerInfo().getUniqueId());
+		return true;
 	}
 
 }

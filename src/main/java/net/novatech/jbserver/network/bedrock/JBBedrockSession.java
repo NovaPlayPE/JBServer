@@ -1,10 +1,10 @@
 package net.novatech.jbserver.network.bedrock;
 
 import lombok.Getter;
+import net.novatech.jbprotocol.bedrock.BedrockSession;
 import net.novatech.jbserver.network.NetworkSession;
 import net.novatech.jbserver.network.bedrock.retranslator.BedrockRetranslatorSector;
 import net.novatech.jbserver.network.protocol.JBPacket;
-import net.novatech.protocol.bedrock.BedrockSession;
 
 public class JBBedrockSession implements NetworkSession {
 
