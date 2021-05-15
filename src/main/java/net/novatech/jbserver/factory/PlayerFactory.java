@@ -29,6 +29,15 @@ public class PlayerFactory implements Factory {
 		return Server.getInstance().getServerSettings().isDynamicPlayerCountEnabled() ? getPlayerCount() + 1 : Server.getInstance().getServerSettings().getMaxPlayerCount();
 	}
 	
+	public Player getPlayerByUUID(UUID uid) {
+		for(Player p : getOnlinePlayers().values()) {
+			if(p.getPlayerInfo().getUniqueId() == uid) {
+				return p;
+			}
+		}
+		return null;
+	}
+	
 	public Player searchPlayerBySession(GameSession session) {
 		for(Player p : getOnlinePlayers().values()) {
 			NetworkSession network = p.getSession();

@@ -23,6 +23,10 @@ public abstract class Player extends EntityHumanoid implements CommandSender, IE
 		
 		getSession().sendPacket(textPacket);
 	}
+	
+	public void close(String cause) {
+		this.close();
+	}
 
 	@Override
 	public void setOp(boolean value) {
