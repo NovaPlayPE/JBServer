@@ -1,27 +1,32 @@
 package net.novatech.jbserver.network.java.retranslator.impl;
 
-import com.github.steveice10.mc.protocol.packet.ingame.server.ServerChatPacket;
-import com.github.steveice10.packetlib.packet.Packet;
-
+import net.novatech.jbprotocol.java.packets.JavaPacket;
+import net.novatech.jbprotocol.java.packets.play.clientbound.ClientChatPacket;
 import net.novatech.jbserver.network.java.retranslator.JavaRetranslator;
 import net.novatech.jbserver.network.protocol.JBPacket;
-import net.novatech.jbserver.network.protocol.impl.JBTextPacket;
+import net.novatech.jbserver.network.protocol.impl.JBChatSendPacket;
+import net.novatech.jbserver.player.java.JavaPlayerInfo;
 import net.novatech.jbserver.utils.Color;
 
 public class TextRetranslator extends JavaRetranslator {
 
 	@Override
-	public JBPacket translateFrom(Packet pk) {
+	public JBPacket translateFrom(JavaPacket pk) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Packet translateTo(JBPacket pk) {
-		JBTextPacket p = (JBTextPacket)pk;
+	public JavaPacket translateTo(JBPacket packet) {
+		JBChatSendPacket pk = (JBChatSendPacket)packet;
+		JavaPlayerInfo info = (JavaPlayerInfo)pk.playerInfo;
 		
-		ServerChatPacket packet = new ServerChatPacket(Color.colorizeMC(p.content));
-		return packet;
+		ClientChatPacket text = new ClientChatPacket();
+		text.message = pk.content;
+		text.type = ClientChatPacket.JavaChatType.CHAT;
+		text.uuid = info.getUniqueId();
+		
+		return text;
 	}
 
 }

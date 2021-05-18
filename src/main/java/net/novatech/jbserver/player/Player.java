@@ -5,7 +5,8 @@ import net.novatech.jbserver.entity.EntityType;
 import net.novatech.jbserver.entity.IEntity;
 import net.novatech.jbserver.entity.human.EntityHumanoid;
 import net.novatech.jbserver.network.NetworkSession;
-import net.novatech.jbserver.network.protocol.impl.JBTextPacket;
+import net.novatech.jbserver.network.protocol.impl.JBChatSendPacket;
+import net.novatech.jbserver.server.Server;
 
 public abstract class Player extends EntityHumanoid implements CommandSender, IEntity{
 	
@@ -16,10 +17,15 @@ public abstract class Player extends EntityHumanoid implements CommandSender, IE
 	public abstract NetworkSession getSession();
 	public abstract PlayerInfo getPlayerInfo();
 	
+	public Server getServer() {
+		return Server.getInstance();
+	}
+	
 	@Override
 	public void sendMessage(String message) {
-		JBTextPacket textPacket = new JBTextPacket();
+		JBChatSendPacket textPacket = new JBChatSendPacket();
 		textPacket.content = message;
+		textPacket.playerInfo = getPlayerInfo();
 		
 		getSession().sendPacket(textPacket);
 	}

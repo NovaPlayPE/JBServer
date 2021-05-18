@@ -6,6 +6,6 @@ public enum JBPacketIdentifier {
 	CHUNK_DATA,
 	
 	//player
-	TEXT_PACKET
+	SEND_CHAT_PACKET
 
 }

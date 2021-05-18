@@ -23,6 +23,7 @@ public class JavaPlayer extends Player {
 	public JavaPlayer(JBJavaSession session, PlayerInfo info) {
 		this.session = session;
 		this.playerInfo = info;
+		session.setPlayer(this);
 	}
 	
 	@Override

@@ -1,15 +1,24 @@
 package net.novatech.jbserver.network.bedrock;
 
 import lombok.Getter;
+import lombok.Setter;
 import net.novatech.jbprotocol.bedrock.BedrockSession;
 import net.novatech.jbserver.network.NetworkSession;
 import net.novatech.jbserver.network.bedrock.retranslator.BedrockRetranslatorSector;
 import net.novatech.jbserver.network.protocol.JBPacket;
+import net.novatech.jbserver.player.Player;
+import net.novatech.jbserver.player.bedrock.BedrockPlayer;
 
 public class JBBedrockSession implements NetworkSession {
-
+	
 	public JBBedrockSession(BedrockSession session) {
 		this.serverSession = session;
+	}
+	@Getter
+	private BedrockPlayer player = null;
+	
+	public void setPlayer(Player player) {
+		this.player = (BedrockPlayer) player;
 	}
 	
 	@Getter
@@ -18,6 +27,11 @@ public class JBBedrockSession implements NetworkSession {
 	@Override
 	public void sendPacket(JBPacket packet) {
 		this.serverSession.sendPacket(BedrockRetranslatorSector.translateTo(packet));
+	}
+	
+	@Override
+	public void handleServerPacket(JBPacket packet) {
+		
 	}
 
 }

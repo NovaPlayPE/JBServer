@@ -39,6 +39,8 @@ public class Server {
 	
 	@Getter
 	private FactoryManager factoryManager = null;
+	@Getter
+	private Broadcaster broadcaster = null;
 
 	private PluginManager pluginManager = null;
 	private EventManager eventManager = null;

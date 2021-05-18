@@ -9,5 +9,9 @@ public class BedrockPlayerInfo extends PlayerInfo {
 	public BedrockPlayerInfo(String username, String address, int port, UUID uuid) {
 		super(username, address,port, uuid);
 	}
+	
+	public String getXuid() {
+		return null; // to do
+	}
 
 }

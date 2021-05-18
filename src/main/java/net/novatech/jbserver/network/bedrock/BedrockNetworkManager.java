@@ -11,13 +11,17 @@ import net.novatech.jbprotocol.GameSession;
 import net.novatech.jbprotocol.GameVersion;
 import net.novatech.jbprotocol.ProtocolServer;
 import net.novatech.jbprotocol.bedrock.BedrockSession;
+import net.novatech.jbprotocol.bedrock.packets.BedrockPacket;
+import net.novatech.jbprotocol.listener.GameListener;
 import net.novatech.jbprotocol.listener.LoginListener;
 import net.novatech.jbprotocol.listener.ServerListener;
+import net.novatech.jbprotocol.packet.AbstractPacket;
 import net.novatech.jbprotocol.util.SessionData;
 
 import net.novatech.jbserver.event.player.*;
 import net.novatech.jbserver.network.INetworkManager;
 import net.novatech.jbserver.network.Network;
+import net.novatech.jbserver.network.bedrock.retranslator.BedrockRetranslatorSector;
 import net.novatech.jbserver.player.Player;
 import net.novatech.jbserver.player.PlayerInfo;
 import net.novatech.jbserver.player.bedrock.BedrockPlayer;
@@ -50,6 +54,7 @@ public class BedrockNetworkManager implements INetworkManager{
 				@Override
 				public void sessionConnected(GameSession session) {
 					BedrockSession bedrock = (BedrockSession) session;
+					bedrock.requireAuthentication(network.getServer().getServerSettings().isOnlineModeEnabled());
 					bedrock.setLoginListener(new LoginListener() {
 						@Override
 						public void loginCompleted(SessionData data) {
@@ -64,7 +69,15 @@ public class BedrockNetworkManager implements INetworkManager{
 							login.call();
 						}
 					});
-					bedrock.setGameListener(new BedrockHandler());
+					bedrock.setGameListener(new GameListener() {
+
+						@Override
+						public void receivePacket(AbstractPacket packet) {
+							Player player = Server.getInstance().getFactoryManager().getPlayerFactory().searchPlayerBySession(session);
+							//player.getSession().handleServerPacket(BedrockRetranslatorSector.translateFrom((BedrockPacket)packet));
+						}
+						
+					});
 				}
 
 				@Override
@@ -74,6 +87,7 @@ public class BedrockNetworkManager implements INetworkManager{
 				}
 				
 			});
+			protocol.bind();
 		});
 	}
 

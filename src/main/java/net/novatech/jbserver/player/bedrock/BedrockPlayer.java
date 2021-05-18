@@ -14,6 +14,7 @@ public class BedrockPlayer extends Player {
 	public BedrockPlayer(JBBedrockSession session,PlayerInfo info) {
 		this.session = session;
 		this.playerInfo = info;
+		session.setPlayer(this);
 	}
 	
 	@Override
