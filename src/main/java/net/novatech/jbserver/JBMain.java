@@ -1,6 +1,7 @@
 package net.novatech.jbserver;
 
 import net.novatech.jbserver.server.Server;
+import net.novatech.library.utils.SystemOS;
 
 public class JBMain {
 	
@@ -16,12 +17,9 @@ public class JBMain {
     public static int DEBUG = 1;
 	
 	public static void main(String[] args) {
-		String osName = System.getProperty("os.name").toLowerCase();
-        if (osName.contains("windows")) {
-            if (osName.contains("2012") || osName.contains("10")) {
-                shortTitle = true;
-            }
-        }
+		if(SystemOS.CURRENT_OS == SystemOS.WINDOWS) {
+			shortTitle = true;
+		}
         for (String arg : args) {
             switch (arg) {
                 case "disable-ansi":

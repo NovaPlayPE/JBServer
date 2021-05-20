@@ -11,6 +11,7 @@ public class ChunkDataRetranslator extends BedrockRetranslator {
 	@Override
 	public JBPacket translateFrom(BedrockPacket pk) {
 		return null;
+	}
 
 	@Override
 	public BedrockPacket translateTo(JBPacket pk) {

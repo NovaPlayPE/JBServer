@@ -24,7 +24,7 @@ public class TextRetranslator extends JavaRetranslator {
 		ClientChatPacket text = new ClientChatPacket();
 		text.message = pk.content;
 		text.type = ClientChatPacket.JavaChatType.CHAT;
-		text.uuid = info.getUniqueId();
+		text.sender = info.getUniqueId();
 		
 		return text;
 	}
