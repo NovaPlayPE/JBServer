@@ -8,12 +8,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import net.novatech.jbprotocol.GameSession;
-import net.novatech.jbprotocol.GameVersion;
+import net.novatech.jbprotocol.GameEdition;
 import net.novatech.jbprotocol.ProtocolServer;
 import net.novatech.jbprotocol.bedrock.BedrockSession;
 import net.novatech.jbprotocol.bedrock.packets.BedrockPacket;
 import net.novatech.jbprotocol.listener.GameListener;
-import net.novatech.jbprotocol.listener.LoginListener;
+import net.novatech.jbprotocol.listener.LoginServerListener;
 import net.novatech.jbprotocol.listener.ServerListener;
 import net.novatech.jbprotocol.packet.AbstractPacket;
 import net.novatech.jbprotocol.util.SessionData;
@@ -47,7 +47,7 @@ public class BedrockNetworkManager implements INetworkManager{
 	public void start() {
 		pool.execute(() -> {
 			
-			ProtocolServer protocol = new ProtocolServer(new InetSocketAddress(this.ip, this.port), GameVersion.BEDROCK);
+			ProtocolServer protocol = new ProtocolServer(new InetSocketAddress(this.ip, this.port), GameEdition.BEDROCK);
 			protocol.setMaxConnections(getNetwork().getServer().getServerSettings().getMaxPlayerCount());
 			protocol.setServerListener(new ServerListener() {
 
@@ -55,7 +55,7 @@ public class BedrockNetworkManager implements INetworkManager{
 				public void sessionConnected(GameSession session) {
 					BedrockSession bedrock = (BedrockSession) session;
 					bedrock.requireAuthentication(network.getServer().getServerSettings().isOnlineModeEnabled());
-					bedrock.setLoginListener(new LoginListener() {
+					bedrock.setLoginListener(new LoginServerListener() {
 						@Override
 						public void loginCompleted(SessionData data) {
 							PlayerInfo info = new BedrockPlayerInfo(data.getUsername(), 

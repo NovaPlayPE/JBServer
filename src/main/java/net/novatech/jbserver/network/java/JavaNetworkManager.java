@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import net.novatech.jbprotocol.GameSession;
-import net.novatech.jbprotocol.GameVersion;
+import net.novatech.jbprotocol.GameEdition;
 import net.novatech.jbprotocol.ProtocolServer;
 import net.novatech.jbprotocol.java.JavaSession;
 import net.novatech.jbprotocol.java.packets.JavaPacket;
@@ -40,7 +40,7 @@ public class JavaNetworkManager implements INetworkManager{
 	@Override
 	public void start() {
 		pool.execute(() -> {
-			ProtocolServer server = new ProtocolServer(new InetSocketAddress(this.ip, this.port), GameVersion.JAVA);
+			ProtocolServer server = new ProtocolServer(new InetSocketAddress(this.ip, this.port), GameEdition.JAVA);
 			server.setMaxConnections(getNetwork().getServer().getFactoryManager().getPlayerFactory().getMaximalPlayerCount());
 			server.setServerListener(new ServerListener() {
 
@@ -48,7 +48,7 @@ public class JavaNetworkManager implements INetworkManager{
 				public void sessionConnected(GameSession session) {
 					JavaSession java = (JavaSession) session;
 					java.requireAuthentication(network.getServer().getServerSettings().isOnlineModeEnabled());
-					java.setLoginListener(new LoginListener() {
+					java.setLoginListener(new LoginServerListener() {
 						@Override
 						public void loginCompleted(SessionData data) {
 							JBJavaSession jb = new JBJavaSession(java);
