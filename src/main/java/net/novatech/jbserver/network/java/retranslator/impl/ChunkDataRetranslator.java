@@ -7,15 +7,9 @@ import net.novatech.jbserver.network.protocol.JBPacket;
 import net.novatech.jbserver.network.protocol.impl.JBChunkDataPacket;
 
 public class ChunkDataRetranslator extends JavaRetranslator {
-
-	@Override
-	public JBPacket translateFrom(JavaPacket pk) {
-		return null;
-	}
-
 	
 	@Override
-	public JavaPacket translateTo(JBPacket pk) {
+	public JavaPacket translate(JBPacket pk) {
 		return null;
 	}
 

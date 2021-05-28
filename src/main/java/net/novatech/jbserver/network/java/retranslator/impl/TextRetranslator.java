@@ -8,16 +8,10 @@ import net.novatech.jbserver.network.protocol.impl.JBChatSendPacket;
 import net.novatech.jbserver.player.java.JavaPlayerInfo;
 import net.novatech.jbserver.utils.Color;
 
-public class TextRetranslator extends JavaRetranslator {
+public class TextRetranslator extends JavaRetranslator<ClientChatPacket> {
 
 	@Override
-	public JBPacket translateFrom(JavaPacket pk) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public JavaPacket translateTo(JBPacket packet) {
+	public ClientChatPacket translate(JBPacket packet) {
 		JBChatSendPacket pk = (JBChatSendPacket)packet;
 		JavaPlayerInfo info = (JavaPlayerInfo)pk.playerInfo;
 		

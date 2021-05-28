@@ -8,15 +8,10 @@ import net.novatech.jbserver.network.protocol.impl.JBChatSendPacket;
 import net.novatech.jbserver.player.bedrock.BedrockPlayerInfo;
 import net.novatech.jbserver.utils.Color;
 
-public class TextRetranslator extends BedrockRetranslator{
+public class TextRetranslator extends BedrockRetranslator<TextPacket>{
 
 	@Override
-	public JBPacket translateFrom(BedrockPacket pk) {
-		return null; // nothing, lol...
-	}
-
-	@Override
-	public BedrockPacket translateTo(JBPacket packet) {
+	public TextPacket translate(JBPacket packet) {
 		JBChatSendPacket pk = (JBChatSendPacket)packet;
 		BedrockPlayerInfo info = (BedrockPlayerInfo)pk.playerInfo;
 		

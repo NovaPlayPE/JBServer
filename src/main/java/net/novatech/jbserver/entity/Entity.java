@@ -17,6 +17,9 @@ public abstract class Entity implements IEntity{
 	private Location location = null;
 	
 	@Getter
+	private long eid;
+	
+	@Getter
 	private EntityBuilder entityBuilder = null;
 	
 	public Entity(EntityType type) {

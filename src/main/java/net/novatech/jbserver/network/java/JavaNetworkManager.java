@@ -66,6 +66,7 @@ public class JavaNetworkManager implements INetworkManager{
 						public void receivePacket(AbstractPacket packet) {
 							Player player = Server.getInstance().getFactoryManager().getPlayerFactory().searchPlayerBySession(session);
 							//player.getSession().handleServerPacket(JavaRetranslatorSector.translateFrom((JavaPacket)packet);
+							player.getSession().handleServerPacket(packet);
 						}					
 					});
 				}

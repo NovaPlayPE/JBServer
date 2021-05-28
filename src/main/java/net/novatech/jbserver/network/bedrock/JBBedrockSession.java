@@ -3,6 +3,8 @@ package net.novatech.jbserver.network.bedrock;
 import lombok.Getter;
 import lombok.Setter;
 import net.novatech.jbprotocol.bedrock.BedrockSession;
+import net.novatech.jbprotocol.bedrock.packets.BedrockPacket;
+import net.novatech.jbprotocol.packet.AbstractPacket;
 import net.novatech.jbserver.network.NetworkSession;
 import net.novatech.jbserver.network.bedrock.retranslator.BedrockRetranslatorSector;
 import net.novatech.jbserver.network.protocol.JBPacket;
@@ -26,12 +28,14 @@ public class JBBedrockSession implements NetworkSession {
 	
 	@Override
 	public void sendPacket(JBPacket packet) {
-		this.serverSession.sendPacket(BedrockRetranslatorSector.translateTo(packet));
+		this.serverSession.sendPacket(BedrockRetranslatorSector.translate(packet));
 	}
 	
 	@Override
-	public void handleServerPacket(JBPacket packet) {
-		
+	public void handleServerPacket(AbstractPacket packet) {
+		if(!(packet instanceof BedrockPacket)) {
+			return;
+		}
 	}
 
 }

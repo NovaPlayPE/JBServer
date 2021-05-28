@@ -7,7 +7,6 @@ import net.novatech.jbserver.network.bedrock.BedrockNetworkManager;
 import net.novatech.jbserver.network.java.JavaNetworkManager;
 import net.novatech.jbserver.network.protocol.JBPacket;
 import net.novatech.jbserver.network.protocol.JBPacketIdentifier;
-import net.novatech.jbserver.network.protocol.JBPacketPairInfo;
 import net.novatech.jbserver.server.Server;
 
 public class Network {
@@ -17,7 +16,6 @@ public class Network {
 	@Getter
 	public int bedrockPort = 25565;
 	private Server server = null;
-	public HashMap<JBPacketIdentifier, JBPacketPairInfo> packetList = new HashMap<JBPacketIdentifier, JBPacketPairInfo>();
 	
 	private INetworkManager bedrockManager = null;
 	private INetworkManager javaManager = null;
@@ -46,11 +44,6 @@ public class Network {
 	
 	public Server getServer() {
 		return this.server;
-	}
-	
-	
-	public void registerPacket(JBPacketIdentifier id, JBPacketPairInfo info) {
-		this.packetList.put(id,info);
 	}
 	
 	public void registerPackets() {

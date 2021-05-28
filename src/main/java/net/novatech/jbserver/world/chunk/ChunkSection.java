@@ -1,7 +1,7 @@
 package net.novatech.jbserver.world.chunk;
 
 import com.google.common.base.Preconditions;
-import it.unimi.dsi.fastutil.ints.IntList;
+//import it.unimi.dsi.fastutil.ints.IntList;
 import io.netty.buffer.ByteBuf;
 import net.novatech.jbserver.utils.NibbleArray;
 import net.novatech.library.nbt.tags.*;
@@ -10,7 +10,7 @@ public class ChunkSection {
 	
 	private static int SIZE = 4096;
 	
-	private IntList pallette;
+	//private IntList pallette;
 	
 	
 	private short[][] blocks = null;

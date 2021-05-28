@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import net.novatech.jbprotocol.java.packets.JavaPacket;
 import net.novatech.jbserver.network.java.retranslator.impl.ChunkDataRetranslator;
+import net.novatech.jbserver.network.java.retranslator.impl.EntityCreateRetranslator;
 import net.novatech.jbserver.network.java.retranslator.impl.TextRetranslator;
 import net.novatech.jbserver.network.protocol.JBPacket;
 import net.novatech.jbserver.network.protocol.JBPacketIdentifier;
@@ -15,15 +16,12 @@ public class JavaRetranslatorSector {
 	static {
 		MAP.put(JBPacketIdentifier.CHUNK_DATA, new ChunkDataRetranslator());
 		MAP.put(JBPacketIdentifier.SEND_CHAT_PACKET, new TextRetranslator());
+		MAP.put(JBPacketIdentifier.CREATE_ENTITY, new EntityCreateRetranslator());
 		
 	}
 	
 	public static JavaPacket translateTo(JBPacket pk) {
-		return MAP.get(pk.getIdentifier()).translateTo(pk);
-	}
-	
-	public static JBPacket translateFrom(JavaPacket pk) {
-		return MAP.get(PAK.get(pk.getClass())).translateFrom(pk);
+		return MAP.get(pk.getIdentifier()).translate(pk);
 	}
 
 }

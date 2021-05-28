@@ -9,12 +9,7 @@ import net.novatech.jbprotocol.bedrock.packets.BedrockPacket;
 public class ChunkDataRetranslator extends BedrockRetranslator {
 
 	@Override
-	public JBPacket translateFrom(BedrockPacket pk) {
-		return null;
-	}
-
-	@Override
-	public BedrockPacket translateTo(JBPacket pk) {
+	public BedrockPacket translate(JBPacket pk) {
 		return null;
 	}
 

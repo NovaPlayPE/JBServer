@@ -2,7 +2,10 @@ package net.novatech.jbserver.network.java;
 
 import lombok.Getter;
 import net.novatech.jbprotocol.java.JavaSession;
+import net.novatech.jbprotocol.java.packets.JavaPacket;
+import net.novatech.jbprotocol.packet.AbstractPacket;
 import net.novatech.jbserver.network.NetworkSession;
+import net.novatech.jbserver.network.java.retranslator.JavaRetranslatorSector;
 import net.novatech.jbserver.network.protocol.JBPacket;
 import net.novatech.jbserver.network.protocol.impl.*;
 import net.novatech.jbserver.player.Player;
@@ -26,17 +29,13 @@ public class JBJavaSession implements NetworkSession {
 	
 	@Override
 	public void sendPacket(JBPacket packet) {
-		// TODO Auto-generated method stub
-		
+		this.serverSession.sendPacket(JavaRetranslatorSector.translateTo(packet));
 	}
 
 	@Override
-	public void handleServerPacket(JBPacket packet) {
-		switch(packet.getIdentifier()) {
-		case TEXT_PACKET:
-			JBChatSendPacket pk = (JBChatSendPacket)packet;
-			getPlayer().getServer().getBroadcaster().broadcastMessage(pk.message);
-			break;
+	public void handleServerPacket(AbstractPacket packet) {
+		if(!(packet instanceof JavaPacket)) {
+			return;
 		}
 	}
 
