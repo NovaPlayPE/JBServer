@@ -3,6 +3,7 @@ package net.novatech.jbserver.world;
 import lombok.Getter;
 import lombok.Setter;
 import net.novatech.jbserver.material.MaterialBlock;
+import net.novatech.jbserver.player.Player;
 import net.novatech.jbserver.server.Server;
 import net.novatech.jbserver.world.chunk.ChunkManager;
 import net.novatech.jbserver.world.provider.BaseWorldProvider;
@@ -51,6 +52,8 @@ public class World {
 		
 	}
 	
-	
+	public synchronized void loadChunksForPlayer(Player player) {
+		
+	}
 	
 }

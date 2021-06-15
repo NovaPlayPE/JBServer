@@ -35,9 +35,7 @@ public abstract class Player extends EntityHumanoid implements CommandSender, IE
 	}
 
 	@Override
-	public void setOp(boolean value) {
-		
-		
+	public void setOp(boolean value) {	
 	}
 
 	@Override
