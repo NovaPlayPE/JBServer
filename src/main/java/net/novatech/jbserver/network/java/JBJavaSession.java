@@ -4,6 +4,8 @@ import lombok.Getter;
 import net.novatech.jbprotocol.java.JavaSession;
 import net.novatech.jbprotocol.java.packets.JavaPacket;
 import net.novatech.jbprotocol.packet.AbstractPacket;
+import net.novatech.jbserver.event.player.PlayerPacketReceiveEvent;
+import net.novatech.jbserver.event.player.PlayerPacketSendEvent;
 import net.novatech.jbserver.network.NetworkSession;
 import net.novatech.jbserver.network.java.retranslator.JavaRetranslatorSector;
 import net.novatech.jbserver.network.protocol.JBPacket;
@@ -29,7 +31,11 @@ public class JBJavaSession implements NetworkSession {
 	
 	@Override
 	public void sendPacket(JBPacket packet) {
-		this.serverSession.sendPacket(JavaRetranslatorSector.translateTo(packet));
+		AbstractPacket pk = JavaRetranslatorSector.translateTo(packet);
+		this.serverSession.sendPacket(pk);
+		
+		PlayerPacketSendEvent event = new PlayerPacketSendEvent(getPlayer(), pk);
+		event.call();
 	}
 
 	@Override
@@ -37,6 +43,9 @@ public class JBJavaSession implements NetworkSession {
 		if(!(packet instanceof JavaPacket)) {
 			return;
 		}
+		
+		PlayerPacketReceiveEvent event = new PlayerPacketReceiveEvent(getPlayer(), packet);
+		event.call();
 	}
 
 }
