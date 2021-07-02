@@ -1,6 +1,7 @@
 package net.novatech.jbserver.material;
 
 import net.novatech.library.math.Vector3d;
+import net.novatech.library.math.Vector3i;
 
 public enum Material {
 	
@@ -83,11 +84,11 @@ public enum Material {
 		return this.isBlock;
 	}
 	
-	public MaterialBlock toBlock(Vector3d vector) throws Exception{
+	public MaterialBlock toBlock(Vector3i vector) throws Exception{
 		return toBlock(vector,null);
 	}
 	
-	public MaterialBlock toBlock(Vector3d vector, MaterialData data) throws Exception {
+	public MaterialBlock toBlock(Vector3i vector, MaterialData data) throws Exception {
 		if(this.isBlock()) {
 			return new MaterialBlock(this, vector, data);
 		}

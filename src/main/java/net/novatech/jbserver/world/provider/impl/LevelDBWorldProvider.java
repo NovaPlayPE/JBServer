@@ -26,6 +26,11 @@ public class LevelDBWorldProvider extends BaseWorldProvider{
 		
 		
 	}
+	
+	@Override
+	public void create() {
+		
+	}
 
 	@Override
 	public void setWorldData(WorldData data) {

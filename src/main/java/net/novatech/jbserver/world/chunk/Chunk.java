@@ -1,7 +1,9 @@
 package net.novatech.jbserver.world.chunk;
 
 import net.novatech.jbserver.entity.Entity;
+import net.novatech.jbserver.material.MaterialBlock;
 import net.novatech.jbserver.world.World;
+import net.novatech.library.math.Vector3i;
 import net.novatech.library.nbt.tags.*;
 
 import java.util.*;
@@ -30,6 +32,22 @@ public class Chunk {
 		
 		this.world = world;
 		this.chunkSections = new ChunkSection[16];
+	}
+	
+	public MaterialBlock getBlockAt(Vector3i vector) {
+		return getBlockAt(vector.getX(), vector.getY(), vector.getZ());
+	}
+	
+	public MaterialBlock getBlockAt(int x, int y, int z) {
+		return null;
+	}
+	
+	public void setBlock(MaterialBlock block) {
+		setBlock(block, block.getVector().getX(), block.getVector().getY(), block.getVector().getZ());
+	}
+	
+	public void setBlock(MaterialBlock block, int x, int y, int z) {
+		
 	}
 	
 	public byte getBlockLight(int x, int y, int z) {

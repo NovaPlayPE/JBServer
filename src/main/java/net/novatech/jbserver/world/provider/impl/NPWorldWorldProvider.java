@@ -35,6 +35,11 @@ public class NPWorldWorldProvider extends BaseWorldProvider{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void create() {
+		
+	}
 
 	@Override
 	public void setWorldData(WorldData data) {

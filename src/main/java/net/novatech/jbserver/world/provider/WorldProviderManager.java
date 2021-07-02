@@ -3,6 +3,8 @@ package net.novatech.jbserver.world.provider;
 import java.lang.reflect.Constructor;
 import java.util.*;
 
+import net.novatech.library.reflection.Reflect;
+
 public class WorldProviderManager {
 	
 	public static String ANVIL = "anvil";
@@ -14,6 +16,14 @@ public class WorldProviderManager {
 	
 	public static void registerWorldProvider(String id, Class<? extends BaseWorldProvider> provider) {
 		providers.put(id, provider);
+	}
+	
+	public static BaseWorldProvider testProvider(String worldName) {
+		BaseWorldProvider provajd =  Reflect.on(providers.get(worldName)).get();
+		if(provajd.isValid()) {
+			return provajd;
+		}
+		return null;
 	}
 	
 	public static BaseWorldProvider tryGetProvider(String worldName) {

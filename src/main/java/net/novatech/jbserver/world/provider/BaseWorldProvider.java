@@ -26,6 +26,7 @@ public abstract class BaseWorldProvider {
 	}
 	
 	public abstract void load();
+	public abstract void create();
 	
 	public abstract boolean isValid();
 	
