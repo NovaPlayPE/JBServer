@@ -52,7 +52,11 @@ public class JavaNetworkManager implements INetworkManager{
 						@Override
 						public void loginCompleted(SessionData data) {
 							JBJavaSession jb = new JBJavaSession(java);
-							JavaPlayerInfo info = new JavaPlayerInfo(data.getUsername(), data.getAddress().getAddress().toString(), data.getAddress().getPort(), data.getUuid());
+							JavaPlayerInfo info = new JavaPlayerInfo(
+									data.getUsername(),
+									data.getAddress().getAddress().toString(),
+									data.getAddress().getPort(),
+									data.getUuid());
 							Player player = new JavaPlayer(jb, info);
 							Server.getInstance().getFactoryManager().getPlayerFactory().addPlayer(player);
 							
