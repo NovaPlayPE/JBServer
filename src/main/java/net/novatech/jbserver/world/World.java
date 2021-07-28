@@ -1,8 +1,12 @@
 package net.novatech.jbserver.world;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import lombok.Getter;
 import lombok.Setter;
 import net.novatech.jbserver.material.MaterialBlock;
+import net.novatech.jbserver.network.protocol.impl.JBChunkDataPacket;
 import net.novatech.jbserver.player.Player;
 import net.novatech.jbserver.server.Server;
 import net.novatech.jbserver.world.chunk.ChunkManager;
@@ -25,6 +29,7 @@ public class World {
 	
 	@Getter
 	private ChunkManager chunkManager = null;
+	private Map<String, Player> activePlayers = new HashMap<String, Player>();
 	
 	public World(Server server, String worldId, BaseWorldProvider provider) {
 		this.server = server;
@@ -52,8 +57,19 @@ public class World {
 		
 	}
 	
+	public void tick(int currentTick) {
+		
+	}
+	
 	public synchronized void loadChunksForPlayer(Player player) {
 		
+	}
+	
+	public synchronized void sendChunks(Player player, int x, int z) {
+		JBChunkDataPacket pk = new JBChunkDataPacket();
+		pk.chunk = getChunkManager().getChunk(x, z);
+		
+		player.getSession().sendPacket(pk);
 	}
 	
 }

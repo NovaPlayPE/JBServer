@@ -17,7 +17,14 @@ public class ChunkDataRetranslator extends BedrockRetranslator<LevelChunkPacket>
 		BedrockChunk chunk = new BedrockChunk();
 		chunk.chunkX = p.getChunk().getX();
 		chunk.chunkZ = p.getChunk().getZ();
-		chunk.chunkData = new BedrockChunkData();
+		BedrockChunkData data = new BedrockChunkData();
+		int subChunks = p.getChunk().getSections().length;
+		while(subChunks >= 0 && p.getChunk().getSections()[subChunks] == null) {
+			subChunks--;
+		}
+		data.subChunkCount = subChunks;
+		
+		chunk.chunkData = data;
 		
 		LevelChunkPacket levelChunk = new LevelChunkPacket();
 		levelChunk.chunk = chunk;

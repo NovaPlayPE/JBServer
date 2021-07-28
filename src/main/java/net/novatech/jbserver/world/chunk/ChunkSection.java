@@ -13,15 +13,15 @@ public class ChunkSection {
 	//private IntList pallette;
 	
 	
-	private short[][] blocks = null;
+	private ByteBuf[] blocks = new ByteBuf[2];
 	private NibbleArray blockLight = null;
 	private NibbleArray skyLight = null;
 	
 	public ChunkSection() {
-		this(new short[2][SIZE], new NibbleArray(SIZE), new NibbleArray(SIZE));
+		this(new ByteBuf[2], new NibbleArray(SIZE), new NibbleArray(SIZE));
 	}
 	
-	private ChunkSection(short[][] blocks, NibbleArray blockLight, NibbleArray skyLight) { //multi palettes not implemented yet...
+	private ChunkSection(ByteBuf[] blocks, NibbleArray blockLight, NibbleArray skyLight) { //multi palettes not implemented yet...
 		this.blocks = blocks;
 		this.blockLight = blockLight;
 		this.skyLight = skyLight;
@@ -41,6 +41,15 @@ public class ChunkSection {
 	
 	public byte getSkyLight(int x, int y, int z) {
 		return this.skyLight.get(x, y, x);
+	}
+	
+	public short getRuntimeId(int x, int y, int z, int layer) {
+		return getRuntimeId((y << 8 | z << 4 | x), layer);
+	}
+	
+	public short getRuntimeId(int index, int layer) {
+		ByteBuf storage = this.blocks[layer];
+		return storage.getShort(index << 1);
 	}
 	
 	public void writeToJavaNetwork(ByteBuf buf) {
