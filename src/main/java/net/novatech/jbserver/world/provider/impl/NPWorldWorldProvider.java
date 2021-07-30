@@ -6,6 +6,7 @@ import lombok.Getter;
 import net.novatech.jbserver.manager.PathManager;
 import net.novatech.jbserver.world.WorldData;
 import net.novatech.jbserver.world.chunk.Chunk;
+import net.novatech.jbserver.world.chunk.ChunkVector;
 import net.novatech.jbserver.world.provider.BaseWorldProvider;
 /*
  * To question what the hack is this, there is simple question: it will be new format for minigame worlds,
@@ -60,12 +61,6 @@ public class NPWorldWorldProvider extends BaseWorldProvider{
 	}
 
 	@Override
-	public Chunk readChunk(int x, int z) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void writeChunk(Chunk chunk) {
 		// TODO Auto-generated method stub
 		
@@ -75,6 +70,12 @@ public class NPWorldWorldProvider extends BaseWorldProvider{
 	public int getChunkCount() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Chunk readChunk(ChunkVector vector) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

@@ -88,6 +88,10 @@ public class ServerSettings extends BaseSettings{
 		return (long) this.getPropertyInt("world-seed");
 	}
 	
+	public boolean useInMemoryWorlds() {
+		return this.getPropertyBoolean("inmemory-worlds", true);
+	}
+	
 	public String getDefaultWorldType() {
 		return this.getPropertyString("world-type");
 	}

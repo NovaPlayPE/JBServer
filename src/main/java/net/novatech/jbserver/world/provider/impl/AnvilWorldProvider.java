@@ -7,6 +7,7 @@ import net.novatech.jbserver.manager.PathManager;
 import net.novatech.jbserver.server.Server;
 import net.novatech.jbserver.world.WorldData;
 import net.novatech.jbserver.world.chunk.Chunk;
+import net.novatech.jbserver.world.chunk.ChunkVector;
 import net.novatech.jbserver.world.provider.BaseWorldProvider;
 import net.novatech.jbserver.world.provider.WorldProviderManager;
 import net.novatech.library.nbt.NBTIO;
@@ -68,12 +69,6 @@ public class AnvilWorldProvider extends BaseWorldProvider{
 	}
 
 	@Override
-	public Chunk readChunk(int x, int z) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void writeChunk(Chunk chunk) {
 		// TODO Auto-generated method stub
 		
@@ -83,6 +78,12 @@ public class AnvilWorldProvider extends BaseWorldProvider{
 	public int getChunkCount() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Chunk readChunk(ChunkVector vector) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

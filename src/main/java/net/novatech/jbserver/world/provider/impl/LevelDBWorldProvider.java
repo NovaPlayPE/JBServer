@@ -5,6 +5,7 @@ import java.io.File;
 import net.novatech.jbserver.manager.PathManager;
 import net.novatech.jbserver.world.WorldData;
 import net.novatech.jbserver.world.chunk.Chunk;
+import net.novatech.jbserver.world.chunk.ChunkVector;
 import net.novatech.jbserver.world.provider.BaseWorldProvider;
 
 public class LevelDBWorldProvider extends BaseWorldProvider{
@@ -51,12 +52,6 @@ public class LevelDBWorldProvider extends BaseWorldProvider{
 	}
 
 	@Override
-	public Chunk readChunk(int x, int z) {
-		
-		return null;
-	}
-
-	@Override
 	public void writeChunk(Chunk chunk) {
 		
 		
@@ -66,6 +61,12 @@ public class LevelDBWorldProvider extends BaseWorldProvider{
 	public int getChunkCount() {
 		
 		return 0;
+	}
+
+	@Override
+	public Chunk readChunk(ChunkVector vector) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

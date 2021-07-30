@@ -9,7 +9,9 @@ import net.novatech.jbserver.material.MaterialBlock;
 import net.novatech.jbserver.network.protocol.impl.JBChunkDataPacket;
 import net.novatech.jbserver.player.Player;
 import net.novatech.jbserver.server.Server;
+import net.novatech.jbserver.world.chunk.Chunk;
 import net.novatech.jbserver.world.chunk.ChunkManager;
+import net.novatech.jbserver.world.chunk.ChunkVector;
 import net.novatech.jbserver.world.provider.BaseWorldProvider;
 import net.novatech.library.math.Vector3d;
 
@@ -46,6 +48,7 @@ public class World {
 	
 	public void load() {
 		this.worldProvider.load();
+		
 		WorldData worldData = this.worldProvider.getWorldData();
 	}
 	
@@ -62,12 +65,24 @@ public class World {
 	}
 	
 	public synchronized void loadChunksForPlayer(Player player) {
-		
+		if(Server.getInstance().getServerSettings().useInMemoryWorlds()) {
+			for(Player p : this.activePlayers.values()) {
+				sendChunks(p);
+			}
+		} else {
+			
+		}
 	}
 	
-	public synchronized void sendChunks(Player player, int x, int z) {
+	public synchronized void sendChunks(Player player) {
+		for(Chunk chunk : getChunkManager().getChunkCache().cachedChunks.values()) {
+			
+		}
+	}
+	
+	public synchronized void sendChunks(Player player, ChunkVector vector) {
 		JBChunkDataPacket pk = new JBChunkDataPacket();
-		pk.chunk = getChunkManager().getChunk(x, z);
+		pk.chunk = getChunkManager().getChunk(vector);
 		
 		player.getSession().sendPacket(pk);
 	}

@@ -14,9 +14,7 @@ import lombok.Setter;
 public class Chunk {
 	
 	@Getter
-	public int x;
-	@Getter
-	public int z;
+	public ChunkVector vector;
 	@Getter
 	public World world;
 	public ChunkSection[] chunkSections;
@@ -26,9 +24,8 @@ public class Chunk {
 	public List<CompoundTag> nbtEntities = new ArrayList<CompoundTag>();
 	public List<CompoundTag> nbtBlockEntities = new ArrayList<CompoundTag>();
 	
-	public Chunk(int x, int z, World world) {
-		this.x = x;
-		this.z = z;
+	public Chunk(ChunkVector vector, World world) {
+		this.vector = vector;
 		
 		this.world = world;
 		this.chunkSections = new ChunkSection[16];
