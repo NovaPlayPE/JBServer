@@ -11,14 +11,14 @@ import net.novatech.jbprotocol.GameSession;
 import net.novatech.jbprotocol.GameEdition;
 import net.novatech.jbprotocol.ProtocolServer;
 import net.novatech.jbprotocol.java.JavaSession;
-import net.novatech.jbprotocol.java.packets.JavaPacket;
+import net.novatech.jbprotocol.java.data.JavaPong;
 import net.novatech.jbprotocol.listener.*;
 import net.novatech.jbprotocol.packet.AbstractPacket;
+import net.novatech.jbprotocol.util.Pong;
 import net.novatech.jbprotocol.util.SessionData;
 import net.novatech.jbserver.event.player.PlayerLoginEvent;
 import net.novatech.jbserver.network.INetworkManager;
 import net.novatech.jbserver.network.Network;
-import net.novatech.jbserver.network.java.retranslator.JavaRetranslatorSector;
 import net.novatech.jbserver.player.Player;
 import net.novatech.jbserver.player.java.JavaPlayer;
 import net.novatech.jbserver.player.java.JavaPlayerInfo;
@@ -79,6 +79,18 @@ public class JavaNetworkManager implements INetworkManager{
 				public void sessionDisconnected(GameSession session, String cause) {
 					Player p = Server.getInstance().getFactoryManager().getPlayerFactory().searchPlayerBySession(session);
 					Server.getInstance().getFactoryManager().getPlayerFactory().removePlayer(p);
+				}
+
+				@Override
+				public void handlePong(Pong pong) {
+					JavaPong p = (JavaPong)pong;
+					p.gameVersion = "1.17.0";
+					p.protocolVersion = 04000001B;
+					p.motd = Server.getInstance().getServerSettings().getMotd();
+					p.description = Server.getInstance().getServerSettings().getMotdUnderline();
+					p.maxPlayers = Server.getInstance().getServerSettings().getMaxPlayerCount();
+					p.onlinePlayers = Server.getInstance().getFactoryManager().getPlayerFactory().getPlayerCount();
+					p.onlinePlayerList = null; //it is made because Bedrock edition has no mojang auth
 				}
 				
 			});

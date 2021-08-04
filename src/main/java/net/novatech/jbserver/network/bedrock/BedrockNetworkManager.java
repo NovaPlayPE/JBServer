@@ -11,11 +11,13 @@ import net.novatech.jbprotocol.GameSession;
 import net.novatech.jbprotocol.GameEdition;
 import net.novatech.jbprotocol.ProtocolServer;
 import net.novatech.jbprotocol.bedrock.BedrockSession;
+import net.novatech.jbprotocol.bedrock.data.BedrockPong;
 import net.novatech.jbprotocol.bedrock.packets.BedrockPacket;
 import net.novatech.jbprotocol.listener.GameListener;
 import net.novatech.jbprotocol.listener.LoginServerListener;
 import net.novatech.jbprotocol.listener.ServerListener;
 import net.novatech.jbprotocol.packet.AbstractPacket;
+import net.novatech.jbprotocol.util.Pong;
 import net.novatech.jbprotocol.util.SessionData;
 
 import net.novatech.jbserver.event.player.*;
@@ -84,6 +86,16 @@ public class BedrockNetworkManager implements INetworkManager{
 				public void sessionDisconnected(GameSession session, String cause) {
 					Player p = Server.getInstance().getFactoryManager().getPlayerFactory().searchPlayerBySession(session);
 					Server.getInstance().getFactoryManager().getPlayerFactory().removePlayer(p);
+				}
+
+				@Override
+				public void handlePong(Pong pong) {
+					BedrockPong p = (BedrockPong)pong;
+					p.gameVersion = "1.17.0";
+					p.protocolVersion = 440;
+					p.motd = Server.getInstance().getServerSettings().getMotd();
+					p.maxPlayers = Server.getInstance().getServerSettings().getMaxPlayerCount();
+					p.onlinePlayers = Server.getInstance().getFactoryManager().getPlayerFactory().getPlayerCount();
 				}
 				
 			});
