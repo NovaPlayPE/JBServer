@@ -1,11 +1,16 @@
 package net.novatech.jbserver.factory;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.UUID;
 
 import net.novatech.jbprotocol.GameSession;
-
+import net.novatech.jbprotocol.auth.GameProfile;
 import net.novatech.jbserver.player.Player;
+import net.novatech.jbserver.player.PlayerInfo;
+import net.novatech.jbserver.player.bedrock.BedrockPlayer;
+import net.novatech.jbserver.player.java.JavaPlayer;
+import net.novatech.jbserver.player.java.JavaPlayerInfo;
 import net.novatech.jbserver.network.NetworkSession;
 import net.novatech.jbserver.server.Server;
 
@@ -46,6 +51,26 @@ public class PlayerFactory implements Factory {
 			}
 		}
 		return null;
+	}
+	
+	public GameProfile[] convertToPongData() {
+		GameProfile[] profiles = new GameProfile[getPlayerCount()];
+		int i = 0;
+		for(Player p : getOnlinePlayers().values()) {
+			PlayerInfo info = p.getPlayerInfo();
+			if(p instanceof JavaPlayer) {
+				profiles[i] = ((JavaPlayerInfo)info).getProfile();
+				i++;
+				break;
+			} else if(p instanceof BedrockPlayer){
+				profiles[i] = new GameProfile(
+						UUID.nameUUIDFromBytes(("OfflinePlayer:"+info.getName()).getBytes(StandardCharsets.UTF_8)),
+						info.getName());
+				i++;
+				break;
+			}
+		}
+		return profiles;
 	}
 	
 	public boolean addPlayer(Player player) {

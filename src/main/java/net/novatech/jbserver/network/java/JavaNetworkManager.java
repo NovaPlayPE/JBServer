@@ -11,6 +11,7 @@ import net.novatech.jbprotocol.GameSession;
 import net.novatech.jbprotocol.GameEdition;
 import net.novatech.jbprotocol.ProtocolServer;
 import net.novatech.jbprotocol.java.JavaSession;
+import net.novatech.jbprotocol.java.JavaSessionData;
 import net.novatech.jbprotocol.java.data.JavaPong;
 import net.novatech.jbprotocol.listener.*;
 import net.novatech.jbprotocol.packet.AbstractPacket;
@@ -19,6 +20,7 @@ import net.novatech.jbprotocol.util.SessionData;
 import net.novatech.jbserver.event.player.PlayerLoginEvent;
 import net.novatech.jbserver.network.INetworkManager;
 import net.novatech.jbserver.network.Network;
+import net.novatech.jbserver.network.protocol.ProtocolInfo;
 import net.novatech.jbserver.player.Player;
 import net.novatech.jbserver.player.java.JavaPlayer;
 import net.novatech.jbserver.player.java.JavaPlayerInfo;
@@ -50,13 +52,15 @@ public class JavaNetworkManager implements INetworkManager{
 					java.requireAuthentication(network.getServer().getServerSettings().isOnlineModeEnabled());
 					java.setLoginListener(new LoginServerListener() {
 						@Override
-						public void loginCompleted(SessionData data) {
+						public void loginCompleted(SessionData dat) {
+							JavaSessionData data = (JavaSessionData)dat;
 							JBJavaSession jb = new JBJavaSession(java);
 							JavaPlayerInfo info = new JavaPlayerInfo(
 									data.getUsername(),
 									data.getAddress().getAddress().toString(),
 									data.getAddress().getPort(),
-									data.getUuid());
+									data.getUuid(),
+									data.toGameProfile());
 							Player player = new JavaPlayer(jb, info);
 							Server.getInstance().getFactoryManager().getPlayerFactory().addPlayer(player);
 							
@@ -84,13 +88,13 @@ public class JavaNetworkManager implements INetworkManager{
 				@Override
 				public void handlePong(Pong pong) {
 					JavaPong p = (JavaPong)pong;
-					p.gameVersion = "1.17.0";
-					p.protocolVersion = 04000001B;
+					p.gameVersion = ProtocolInfo.JAVA_VERSION;
+					p.protocolVersion = ProtocolInfo.JAVA_PROTOCOL;
 					p.motd = Server.getInstance().getServerSettings().getMotd();
 					p.description = Server.getInstance().getServerSettings().getMotdUnderline();
 					p.maxPlayers = Server.getInstance().getServerSettings().getMaxPlayerCount();
 					p.onlinePlayers = Server.getInstance().getFactoryManager().getPlayerFactory().getPlayerCount();
-					p.onlinePlayerList = null; //it is made because Bedrock edition has no mojang auth
+					p.onlinePlayerList = Server.getInstance().getFactoryManager().getPlayerFactory().convertToPongData();
 				}
 				
 			});

@@ -24,6 +24,7 @@ import net.novatech.jbserver.event.player.*;
 import net.novatech.jbserver.network.INetworkManager;
 import net.novatech.jbserver.network.Network;
 import net.novatech.jbserver.network.bedrock.retranslator.BedrockRetranslatorSector;
+import net.novatech.jbserver.network.protocol.ProtocolInfo;
 import net.novatech.jbserver.player.Player;
 import net.novatech.jbserver.player.PlayerInfo;
 import net.novatech.jbserver.player.bedrock.BedrockPlayer;
@@ -91,8 +92,8 @@ public class BedrockNetworkManager implements INetworkManager{
 				@Override
 				public void handlePong(Pong pong) {
 					BedrockPong p = (BedrockPong)pong;
-					p.gameVersion = "1.17.0";
-					p.protocolVersion = 440;
+					p.gameVersion = ProtocolInfo.BEDROCK_VERSION;
+					p.protocolVersion = ProtocolInfo.BEDROCK_PROTOCOL;
 					p.motd = Server.getInstance().getServerSettings().getMotd();
 					p.maxPlayers = Server.getInstance().getServerSettings().getMaxPlayerCount();
 					p.onlinePlayers = Server.getInstance().getFactoryManager().getPlayerFactory().getPlayerCount();
