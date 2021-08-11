@@ -318,7 +318,7 @@ public class SimplePluginManager implements PluginManager{
             }
 
             this.server.getScheduler().cancelTask(plugin);
-            this.server.getEventManager().unregisterEventListener(plugin);
+            this.server.getEventManager().unregisterListeners(plugin);
         }
 	}
 
