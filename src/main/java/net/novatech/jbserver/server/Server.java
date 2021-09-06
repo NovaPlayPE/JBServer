@@ -25,6 +25,7 @@ import net.novatech.jbserver.server.settings.ModulesSettings;
 import net.novatech.jbserver.server.settings.ServerSettings;
 import net.novatech.jbserver.utils.Color;
 import net.novatech.jbserver.utils.Logger;
+import net.novatech.library.math.MathUtils;
 
 public class Server {
 	
@@ -113,6 +114,8 @@ public class Server {
 				put("server-ip", "0.0.0.0");
 				put("java-port",25565);
 				put("bedrock-port", 19132);
+				put("java-enabled", true);
+				put("bedrock-enabled", true);
 				//motd
 				put("motd", "Cool JBServer");
 				put("motd-underline", "Powered by JBServer");
@@ -149,12 +152,29 @@ public class Server {
 	}
 	
 	public void enableNetwork() {
+		boolean java = getServerSettings().javaServerEnabled();
+		boolean bedrock = getServerSettings().bedrockServerEnabled();
+		if(!java && !bedrock) {
+			String edition = "";
+			int rand = MathUtils.rand(1, 2);
+			switch(rand) {
+			case 1:
+				edition = "JAVA";
+				java = true;
+				break;
+			case 2:
+				edition = "BEDROCK";
+				bedrock = true;
+				break;
+			}
+			getLogger().info(Color.RED + "Both editions are disabled, enabling " + Color.YELLOW + edition + Color.RED + " edition");
+		}
 		int port1 = this.settings.getJavaPort();
 		int port2 = this.settings.getBedrockPort();
 		if(port1 == port2) {
-			this.network = new Network(this,port1);
+			this.network = new Network(this,java, bedrock, port1);
 		} else {
-			this.network = new Network(this,port1,port2);
+			this.network = new Network(this,java, bedrock, port1,port2);
 		}
 	}
 	

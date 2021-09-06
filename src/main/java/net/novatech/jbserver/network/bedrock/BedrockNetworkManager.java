@@ -97,6 +97,8 @@ public class BedrockNetworkManager implements INetworkManager{
 					p.motd = Server.getInstance().getServerSettings().getMotd();
 					p.maxPlayers = Server.getInstance().getServerSettings().getMaxPlayerCount();
 					p.onlinePlayers = Server.getInstance().getFactoryManager().getPlayerFactory().getPlayerCount();
+					p.subMotd = Server.getInstance().getServerSettings().getMotdUnderline();
+					p.gamemode = Server.getInstance().getServerSettings().getDefaultGamemodeString();
 				}
 				
 			});

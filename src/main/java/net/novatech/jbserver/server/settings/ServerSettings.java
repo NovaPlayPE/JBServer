@@ -20,6 +20,14 @@ public class ServerSettings extends BaseSettings{
 		return this.getPropertyInt("bedrock-port",19132);
 	}
 	
+	public boolean javaServerEnabled() {
+		return this.getPropertyBoolean("java-enabled", true);
+	}
+	
+	public boolean bedrockServerEnabled() {
+		return this.getPropertyBoolean("bedrock-enabled", true);
+	}
+	
 	public String getMotd() {
 		return this.getPropertyString("motd");
 	}
@@ -70,6 +78,22 @@ public class ServerSettings extends BaseSettings{
 	
 	public int getDefaultGamemode() {
 		return this.getPropertyInt("default-gamemode",0);
+	}
+	
+	public String getDefaultGamemodeString() {
+		return this.getDefaultGamemodeString(false);
+	}
+	
+	public String getDefaultGamemodeString(boolean direct) {
+		int gm = getDefaultGamemode();
+		
+		return switch(gm) {
+		case 0 -> direct ? "Survival" : "%gameMode.survival";
+		case 1 -> direct ? "Creative" : "%gameMode.creative";
+		case 2 -> direct ? "Adventure" : "%gameMode.adventure";
+		case 3 -> direct ? "Spectator" : "%gameMode.spectator";
+		default -> "UNKNOWN";
+		};
 	}
 	
 	public boolean isSpawnProtectionEnabled() {
