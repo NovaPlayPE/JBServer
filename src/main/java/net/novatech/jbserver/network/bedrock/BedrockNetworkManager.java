@@ -13,13 +13,12 @@ import net.novatech.jbprotocol.ProtocolServer;
 import net.novatech.jbprotocol.bedrock.BedrockSession;
 import net.novatech.jbprotocol.bedrock.data.BedrockPong;
 import net.novatech.jbprotocol.bedrock.packets.BedrockPacket;
+import net.novatech.jbprotocol.data.Pong;
+import net.novatech.jbprotocol.data.SessionData;
 import net.novatech.jbprotocol.listener.GameListener;
 import net.novatech.jbprotocol.listener.LoginServerListener;
 import net.novatech.jbprotocol.listener.ServerListener;
 import net.novatech.jbprotocol.packet.AbstractPacket;
-import net.novatech.jbprotocol.util.Pong;
-import net.novatech.jbprotocol.util.SessionData;
-
 import net.novatech.jbserver.event.player.*;
 import net.novatech.jbserver.network.INetworkManager;
 import net.novatech.jbserver.network.Network;
