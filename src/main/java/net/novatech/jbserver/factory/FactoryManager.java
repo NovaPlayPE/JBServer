@@ -1,6 +1,7 @@
 package net.novatech.jbserver.factory;
 
 import net.novatech.jbserver.server.Server;
+import net.novatech.jbserver.utils.Color;
 
 public class FactoryManager {
 	
@@ -21,12 +22,17 @@ public class FactoryManager {
 	public void init(Server server) {
 		this.server = server;
 		
+		this.server.getLogger().info(Color.GREEN + "Enabling " + Color.WHITE + "Entity" + Color.GREEN + " factory");
 		entityFactory = new EntityFactory();
 		entityFactory.init(this);
 		
+
+		this.server.getLogger().info(Color.GREEN + "Enabling " + Color.WHITE + "World" + Color.GREEN + " factory");
 		worldFactory = new WorldFactory();
 		worldFactory.init(this);
 		
+
+		this.server.getLogger().info(Color.GREEN + "Enabling " + Color.WHITE + "Player" + Color.GREEN + " factory");
 		playerFactory = new PlayerFactory();
 		playerFactory.init(this);
 		

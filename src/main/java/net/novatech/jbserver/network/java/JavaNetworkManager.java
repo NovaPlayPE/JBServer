@@ -17,6 +17,7 @@ import net.novatech.jbprotocol.java.JavaSessionData;
 import net.novatech.jbprotocol.java.data.JavaPong;
 import net.novatech.jbprotocol.listener.*;
 import net.novatech.jbprotocol.packet.AbstractPacket;
+import net.novatech.jbprotocol.util.MessageConsumer;
 import net.novatech.jbserver.event.player.PlayerLoginEvent;
 import net.novatech.jbserver.network.INetworkManager;
 import net.novatech.jbserver.network.Network;
@@ -42,7 +43,7 @@ public class JavaNetworkManager implements INetworkManager{
 	@Override
 	public void start() {
 		pool.execute(() -> {
-			ProtocolServer server = new ProtocolServer(new InetSocketAddress(this.ip, this.port), GameEdition.JAVA);
+			ProtocolServer server = new ProtocolServer(this.ip, this.port, GameEdition.JAVA);
 			server.setMaxConnections(getNetwork().getServer().getFactoryManager().getPlayerFactory().getMaximalPlayerCount());
 			server.setServerListener(new ServerListener() {
 
@@ -98,8 +99,19 @@ public class JavaNetworkManager implements INetworkManager{
 				}
 				
 			});
-			server.bind();
-			getNetwork().getServer().getLogger().info("Started java server on port " + this.port);
+			server.bind(new MessageConsumer() {
+
+				@Override
+				public void success() {
+					getNetwork().getServer().getLogger().info("Started JAVA server on port " + port);
+				}
+
+				@Override
+				public void failed(Throwable t) {
+					getNetwork().getServer().getLogger().error("Failed to start JAVA server: " + t);
+				}
+				
+			});
 		});
 	}
 

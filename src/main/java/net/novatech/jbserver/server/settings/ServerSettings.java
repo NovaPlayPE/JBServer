@@ -9,7 +9,7 @@ public class ServerSettings extends BaseSettings{
 	}
 	
 	public String getAddress() {
-		return this.getPropertyString("server-ip");
+		return this.getPropertyString("server-ip", "0.0.0.0");
 	}
 	
 	public int getJavaPort() {

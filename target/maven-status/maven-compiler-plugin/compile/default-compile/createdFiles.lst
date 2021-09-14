@@ -39,6 +39,7 @@ net\novatech\jbserver\config\ConfigSection.class
 net\novatech\jbserver\module\Module.class
 net\novatech\jbserver\network\java\JavaNetworkManager$1$1.class
 net\novatech\jbserver\plugin\PluginManager.class
+net\novatech\jbserver\network\java\JavaNetworkManager$2.class
 net\novatech\jbserver\network\java\retranslator\JavaRetranslatorSector.class
 net\novatech\jbserver\utils\NibbleArray.class
 net\novatech\jbserver\factory\GeneratorFactory.class
@@ -91,6 +92,7 @@ net\novatech\jbserver\event\EventManager.class
 net\novatech\jbserver\player\bedrock\BedrockPlayerInfo.class
 net\novatech\jbserver\world\generator\NormalGenerator.class
 net\novatech\jbserver\event\Cancellable.class
+net\novatech\jbserver\network\bedrock\BedrockNetworkManager$2.class
 net\novatech\jbserver\world\gamerule\GameRuleType.class
 net\novatech\jbserver\server\Server.class
 net\novatech\jbserver\command\CommandExecutor.class

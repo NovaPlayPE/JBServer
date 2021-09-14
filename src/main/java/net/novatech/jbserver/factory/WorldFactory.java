@@ -3,6 +3,7 @@ package net.novatech.jbserver.factory;
 import net.novatech.jbserver.event.world.WorldLoadEvent;
 import net.novatech.jbserver.manager.PathManager;
 import net.novatech.jbserver.server.Server;
+import net.novatech.jbserver.utils.Color;
 import net.novatech.jbserver.world.World;
 import net.novatech.jbserver.world.WorldData;
 import net.novatech.jbserver.world.WorldType;
@@ -23,8 +24,11 @@ public class WorldFactory implements Factory {
 	
 	public void init(FactoryManager manager) {
 		WorldProviderManager.registerWorldProvider(WorldProviderManager.ANVIL, AnvilWorldProvider.class);
+		Server.getInstance().getLogger().debug(Color.GREEN + "Loaded Anvil provider");
 		WorldProviderManager.registerWorldProvider(WorldProviderManager.LEVELDB, LevelDBWorldProvider.class);
+		Server.getInstance().getLogger().debug(Color.GREEN + "Loaded LevelDB provider");
 		WorldProviderManager.registerWorldProvider(WorldProviderManager.NPWORLD, NPWorldWorldProvider.class);
+		Server.getInstance().getLogger().debug(Color.GREEN + "Loaded NPWorld provider");
 		
 		String worldName = manager.getServer().getServerSettings().getDefaultWorldName();
 		setDefaultWorld(doesWorldExist(worldName) ? loadWorld(worldName) : createNewWorld(worldName, getDefaultWorldData()));

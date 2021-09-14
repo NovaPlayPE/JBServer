@@ -19,6 +19,7 @@ import net.novatech.jbprotocol.listener.GameListener;
 import net.novatech.jbprotocol.listener.LoginServerListener;
 import net.novatech.jbprotocol.listener.ServerListener;
 import net.novatech.jbprotocol.packet.AbstractPacket;
+import net.novatech.jbprotocol.util.MessageConsumer;
 import net.novatech.jbserver.event.player.*;
 import net.novatech.jbserver.network.INetworkManager;
 import net.novatech.jbserver.network.Network;
@@ -49,7 +50,7 @@ public class BedrockNetworkManager implements INetworkManager{
 	public void start() {
 		pool.execute(() -> {
 			
-			ProtocolServer protocol = new ProtocolServer(new InetSocketAddress(this.ip, this.port), GameEdition.BEDROCK);
+			ProtocolServer protocol = new ProtocolServer(this.ip, this.port, GameEdition.BEDROCK);
 			protocol.setMaxConnections(getNetwork().getServer().getServerSettings().getMaxPlayerCount());
 			protocol.setServerListener(new ServerListener() {
 
@@ -101,7 +102,19 @@ public class BedrockNetworkManager implements INetworkManager{
 				}
 				
 			});
-			protocol.bind();
+			protocol.bind(new MessageConsumer() {
+
+				@Override
+				public void success() {
+					getNetwork().getServer().getLogger().info("Started BEDROCK server on port " + port);
+				}
+
+				@Override
+				public void failed(Throwable t) {
+					getNetwork().getServer().getLogger().error("Failed to start BEDROCK server: " + t);
+				}
+				
+			});
 		});
 	}
 

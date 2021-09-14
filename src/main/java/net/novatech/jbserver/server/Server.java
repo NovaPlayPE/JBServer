@@ -108,6 +108,7 @@ public class Server {
 	}
 	
 	public void loadSettings() {
+		getLogger().info(Color.GREEN + "Loading settings...");
 		this.settings = new ServerSettings(new Config(PathManager.dataPath + "server.properties", Config.PROPERTIES, new ConfigSection() {
 			{
 				//adresses
@@ -139,6 +140,7 @@ public class Server {
 				put("online-mode",true);
 			}
 		}));
+		getLogger().info(Color.GREEN + "Loading modules");
 		this.modulesSettings = new ModulesSettings(new Config(PathManager.dataPath + "modules.yml", Config.YAML, new ConfigSection() {
 			{
 				put("ai-module", true);
@@ -152,8 +154,14 @@ public class Server {
 	}
 	
 	public void enableNetwork() {
+		String ip = getServerSettings().getAddress();
 		boolean java = getServerSettings().javaServerEnabled();
 		boolean bedrock = getServerSettings().bedrockServerEnabled();
+		int port1 = this.settings.getJavaPort();
+		int port2 = this.settings.getBedrockPort();
+		
+		if(java) getLogger().info(Color.GREEN + "Starting " + Color.YELLOW + " JAVA " + Color.GREEN + " server on address " + Color.BLUE + ip + ":" + port1);
+		if(bedrock) getLogger().info(Color.GREEN + "Starting " + Color.YELLOW + " BEDROCK " + Color.GREEN + " server on address " + Color.BLUE + ip + ":" + port2);
 		if(!java && !bedrock) {
 			String edition = "";
 			int rand = MathUtils.rand(1, 2);
@@ -169,8 +177,6 @@ public class Server {
 			}
 			getLogger().info(Color.RED + "Both editions are disabled, enabling " + Color.YELLOW + edition + Color.RED + " edition");
 		}
-		int port1 = this.settings.getJavaPort();
-		int port2 = this.settings.getBedrockPort();
 		if(port1 == port2) {
 			this.network = new Network(this,java, bedrock, port1);
 		} else {
