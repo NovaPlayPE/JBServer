@@ -7,6 +7,7 @@ import net.novatech.jbserver.entity.human.EntityHumanoid;
 import net.novatech.jbserver.network.NetworkSession;
 import net.novatech.jbserver.network.protocol.impl.JBChatSendPacket;
 import net.novatech.jbserver.server.Server;
+import net.novatech.jbserver.utils.Color;
 
 public abstract class Player extends EntityHumanoid implements CommandSender, IEntity{
 	
@@ -24,6 +25,7 @@ public abstract class Player extends EntityHumanoid implements CommandSender, IE
 	@Override
 	public void sendMessage(String message) {
 		JBChatSendPacket textPacket = new JBChatSendPacket();
+		message = Color.colorizeMC(message);
 		textPacket.content = message;
 		textPacket.playerInfo = getPlayerInfo();
 		
