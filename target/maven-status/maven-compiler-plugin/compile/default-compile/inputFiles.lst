@@ -9,6 +9,7 @@ C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatec
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\network\java\retranslator\JavaRetranslatorSector.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\scheduler\FileWriteTask.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\event\player\PlayerPacketReceiveEvent.java
+C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\event\player\PlayerQuitEvent.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\world\World.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\factory\PlayerFactory.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\scheduler\AsyncWorker.java
@@ -19,6 +20,7 @@ C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatec
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\utils\Color.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\plugin\PluginException.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\utils\NibbleArray.java
+C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\event\player\PlayerMoveEvent.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\entity\passive\EntityCow.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\network\java\JBJavaSession.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\factory\GeneratorFactory.java
@@ -96,6 +98,7 @@ C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatec
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\entity\Entity.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\entity\human\EntityHumanoid.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\server\settings\ServerSettings.java
+C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\event\player\PlayerJoinEvent.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\network\bedrock\JBBedrockSession.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\world\gamerule\GameRuleType.java
 C:\Users\gebab\Desktop\WallServer\JavaBedrock\JBServer\src\main\java\net\novatech\jbserver\entity\EntityType.java

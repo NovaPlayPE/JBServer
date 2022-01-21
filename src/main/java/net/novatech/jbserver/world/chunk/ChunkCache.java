@@ -1,25 +1,30 @@
 package net.novatech.jbserver.world.chunk;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChunkCache {
 	
-	public Map<ChunkVector, Chunk> cachedChunks = new HashMap<ChunkVector, Chunk>();
+	public List<Chunk> cachedChunks = new ArrayList<Chunk>();
 	
-	public ChunkCache(Map<ChunkVector, Chunk> chunks) {
+	public ChunkCache(List<Chunk> chunks) {
 		this.cachedChunks = chunks;
 	}
 	
 	public Chunk getChunk(ChunkVector vector) {
-		return cachedChunks.get(vector);
+		for(Chunk chunk : cachedChunks) {
+			if(chunk.getVector().equals(vector)) {
+				return chunk;
+			}
+		}
+		return null;
 	}
 	
-	public void addChunk(ChunkVector vector, Chunk chunk) {
-		this.cachedChunks.put(vector, chunk);
+	public void addChunk(Chunk chunk) {
+		this.cachedChunks.add(chunk);
 	}
 	
-	public void setChunks(Map<ChunkVector, Chunk> chunks) {
+	public void setChunks(List<Chunk> chunks) {
 		this.cachedChunks = chunks;
 	}
 	

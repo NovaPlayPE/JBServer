@@ -4,10 +4,18 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+import com.google.common.base.Function;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import net.novatech.library.math.*;
 import net.novatech.library.nbt.tags.*;
 
 public class Utils {
+	
+	public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
 	public static void writeFile(String fileName, String content) throws IOException {
 		writeFile(fileName, new ByteArrayInputStream(content.getBytes(StandardCharsets.UTF_8)));
@@ -187,6 +195,59 @@ public class Utils {
 						.add(new FloatTag("", rotation.getYaw()))
 						.add(new FloatTag("", rotation.getPitch())));
 		return nbt;
+	}
+	
+	public static JsonArray toArray(Object... objects) {
+		List array = new ArrayList();
+		Collections.addAll(array, objects);
+		return GSON.toJsonTree(array).getAsJsonArray();
+	}
+
+	public static JsonObject toObject(Object object) {
+		return GSON.toJsonTree(object).getAsJsonObject();
+	}
+
+	public static <E> JsonObject mapToObject(Iterable<E> collection, Function<E, JSONPair> mapper) {
+		Map object = new LinkedHashMap();
+		for (E e : collection) {
+			JSONPair pair = mapper.apply(e);
+			if (pair != null) {
+				object.put(pair.key, pair.value);
+			}
+		}
+		return GSON.toJsonTree(object).getAsJsonObject();
+	}
+
+	public static <E> JsonArray mapToArray(E[] elements, Function<E, Object> mapper) {
+		ArrayList array = new ArrayList();
+		Collections.addAll(array, elements);
+		return mapToArray(array, mapper);
+	}
+
+	public static <E> JsonArray mapToArray(Iterable<E> collection, Function<E, Object> mapper) {
+		List array = new ArrayList();
+		for (E e : collection) {
+			Object obj = mapper.apply(e);
+			if (obj != null) {
+				array.add(obj);
+			}
+		}
+		return GSON.toJsonTree(array).getAsJsonArray();
+	}
+
+	public static class JSONPair {
+		public final String key;
+		public final Object value;
+
+		public JSONPair(String key, Object value) {
+			this.key = key;
+			this.value = value;
+		}
+
+		public JSONPair(int key, Object value) {
+			this.key = String.valueOf(key);
+			this.value = value;
+		}
 	}
 
 }

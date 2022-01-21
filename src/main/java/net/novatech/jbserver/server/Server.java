@@ -134,10 +134,14 @@ public class Server {
 				put("world-provider", "anvil");
 				put("allow-nether",false);
 				put("allow-end",false);
-				//query
+				//query and timings
 				put("enable-query",true);
 				put("enable-rcon",false);
 				put("online-mode",true);
+				put("timings-enablled", false);
+				put("timings-verbose", false);
+				put("timings-history-interval", 6000);
+				put("timings-history-length", 72000);
 			}
 		}));
 		getLogger().info(Color.GREEN + "Loading modules");

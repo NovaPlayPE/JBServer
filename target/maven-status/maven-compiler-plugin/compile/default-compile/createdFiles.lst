@@ -17,6 +17,7 @@ net\novatech\jbserver\utils\Color.class
 net\novatech\jbserver\network\java\JavaNetworkManager.class
 net\novatech\jbserver\entity\EntityType.class
 net\novatech\jbserver\event\player\PlayerEvent.class
+net\novatech\jbserver\event\player\PlayerMoveEvent.class
 net\novatech\jbserver\utils\Color$1.class
 net\novatech\jbserver\utils\NPFormat.class
 net\novatech\jbserver\scheduler\FileWriteTask.class
@@ -24,6 +25,7 @@ net\novatech\jbserver\event\EventManager$Handler.class
 net\novatech\jbserver\event\EventListener.class
 net\novatech\jbserver\network\java\JavaNetworkManager$1.class
 net\novatech\jbserver\player\java\JavaPlayer.class
+net\novatech\jbserver\event\player\PlayerJoinEvent.class
 net\novatech\jbserver\network\bedrock\BedrockNetworkManager$1$2.class
 net\novatech\jbserver\scheduler\AsyncPool$1.class
 net\novatech\jbserver\network\Network.class
@@ -80,6 +82,7 @@ net\novatech\jbserver\material\data\MaterialWoolData.class
 net\novatech\jbserver\network\java\retranslator\impl\TextRetranslator.class
 net\novatech\jbserver\network\java\JBJavaSession.class
 net\novatech\jbserver\factory\FactoryManager.class
+net\novatech\jbserver\event\player\PlayerQuitEvent.class
 net\novatech\jbserver\entity\human\EntityHumanoid.class
 net\novatech\jbserver\network\bedrock\retranslator\impl\EntityCreateRetranslator.class
 net\novatech\jbserver\plugin\PluginException.class

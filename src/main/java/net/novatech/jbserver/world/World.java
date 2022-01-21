@@ -75,7 +75,7 @@ public class World {
 	}
 	
 	public synchronized void sendChunks(Player player) {
-		for(Chunk chunk : getChunkManager().getChunkCache().cachedChunks.values()) {
+		for(Chunk chunk : getChunkManager().getChunkCache().cachedChunks) {
 			
 		}
 	}

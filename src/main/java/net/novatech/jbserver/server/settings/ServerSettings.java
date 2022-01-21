@@ -144,4 +144,20 @@ public class ServerSettings extends BaseSettings{
 		return this.getPropertyBoolean("online-mode",true);
 	}
 	
+	public boolean isTimingsEnabled() {
+		return this.getPropertyBoolean("timings-enabled", false);
+	}
+	
+	public boolean isTimingsVerbose() {
+		return this.getPropertyBoolean("timings-verbose", false);
+	}
+	
+	public int getTimingsInterval() {
+		return this.getPropertyInt("timings-history-interval", 6000);
+	}
+	
+	public int getTimingsLength() {
+		return this.getPropertyInt("timings-history-length", 72000);
+	}
+	
 }
