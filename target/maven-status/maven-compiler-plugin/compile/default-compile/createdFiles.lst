@@ -8,12 +8,14 @@ net\novatech\jbserver\world\gamerule\IntGameRule.class
 net\novatech\jbserver\entity\EntityBuilder.class
 net\novatech\jbserver\world\gamerule\GameRule.class
 net\novatech\jbserver\factory\WorldFactory.class
+co\aikar\timings\TimingsHistory$MinuteReport.class
 net\novatech\jbserver\world\weather\Weather.class
 net\novatech\jbserver\entity\IEntity.class
 net\novatech\jbserver\material\Material.class
 net\novatech\jbserver\utils\Utils.class
 net\novatech\jbserver\event\EventManager$1.class
 net\novatech\jbserver\utils\Color.class
+net\novatech\jbserver\scheduler\TaskNew.class
 net\novatech\jbserver\network\java\JavaNetworkManager.class
 net\novatech\jbserver\entity\EntityType.class
 net\novatech\jbserver\event\player\PlayerEvent.class
@@ -21,6 +23,7 @@ net\novatech\jbserver\event\player\PlayerMoveEvent.class
 net\novatech\jbserver\utils\Color$1.class
 net\novatech\jbserver\utils\NPFormat.class
 net\novatech\jbserver\scheduler\FileWriteTask.class
+co\aikar\timings\TimingIdentifier.class
 net\novatech\jbserver\event\EventManager$Handler.class
 net\novatech\jbserver\event\EventListener.class
 net\novatech\jbserver\network\java\JavaNetworkManager$1.class
@@ -31,6 +34,9 @@ net\novatech\jbserver\scheduler\AsyncPool$1.class
 net\novatech\jbserver\network\Network.class
 net\novatech\jbserver\world\provider\BaseWorldProvider.class
 net\novatech\jbserver\plugin\Plugin.class
+co\aikar\timings\FullServerTickTiming.class
+co\aikar\timings\TimingsHistory$TicksRecord.class
+net\novatech\jbserver\utils\Utils$JSONPair.class
 net\novatech\jbserver\world\generator\VoidGenerator.class
 net\novatech\jbserver\scheduler\AsyncPool.class
 net\novatech\jbserver\utils\ThreadStore.class
@@ -41,10 +47,12 @@ net\novatech\jbserver\config\ConfigSection.class
 net\novatech\jbserver\module\Module.class
 net\novatech\jbserver\network\java\JavaNetworkManager$1$1.class
 net\novatech\jbserver\plugin\PluginManager.class
+co\aikar\timings\TimingsManager$BoundedQueue.class
 net\novatech\jbserver\network\java\JavaNetworkManager$2.class
 net\novatech\jbserver\network\java\retranslator\JavaRetranslatorSector.class
 net\novatech\jbserver\utils\NibbleArray.class
 net\novatech\jbserver\factory\GeneratorFactory.class
+co\aikar\timings\TimingsHistory$PingRecord.class
 net\novatech\jbserver\entity\human\Skin.class
 net\novatech\jbserver\world\gamerule\BooleanGameRule.class
 net\novatech\jbserver\scheduler\Task.class
@@ -68,6 +76,7 @@ net\novatech\jbserver\plugin\PluginLoader.class
 net\novatech\jbserver\scheduler\AsyncTask.class
 net\novatech\jbserver\entity\Entity.class
 net\novatech\jbserver\utils\Color$2.class
+co\aikar\timings\Timing.class
 net\novatech\jbserver\world\generator\populator\TreePopulator.class
 net\novatech\jbserver\event\world\WorldLoadEvent.class
 net\novatech\jbserver\network\bedrock\BedrockNetworkManager$1$1.class
@@ -75,6 +84,7 @@ net\novatech\jbserver\world\WorldException.class
 net\novatech\jbserver\server\Server$1.class
 net\novatech\jbserver\world\generator\Generator.class
 net\novatech\jbserver\world\tree\NormalTree.class
+net\novatech\jbserver\scheduler\ServerSchedulerNew$1.class
 net\novatech\jbserver\scheduler\PluginTask.class
 net\novatech\jbserver\network\java\retranslator\impl\EntityCreateRetranslator.class
 net\novatech\jbserver\material\MaterialItem.class
@@ -85,6 +95,7 @@ net\novatech\jbserver\factory\FactoryManager.class
 net\novatech\jbserver\event\player\PlayerQuitEvent.class
 net\novatech\jbserver\entity\human\EntityHumanoid.class
 net\novatech\jbserver\network\bedrock\retranslator\impl\EntityCreateRetranslator.class
+co\aikar\timings\Timings.class
 net\novatech\jbserver\plugin\PluginException.class
 net\novatech\jbserver\command\CommandSender.class
 net\novatech\jbserver\world\generator\Populator.class
@@ -101,6 +112,7 @@ net\novatech\jbserver\server\Server.class
 net\novatech\jbserver\command\CommandExecutor.class
 net\novatech\jbserver\player\java\JavaPlayerInfo.class
 net\novatech\jbserver\plugin\PluginDescription.class
+net\novatech\jbserver\scheduler\ServerSchedulerNew.class
 net\novatech\jbserver\plugin\java\JavaClassLoader.class
 net\novatech\jbserver\network\java\JavaNetworkManager$1$2.class
 net\novatech\jbserver\world\chunk\ChunkVector.class
@@ -108,9 +120,11 @@ net\novatech\jbserver\network\bedrock\JBBedrockSession.class
 net\novatech\jbserver\entity\ai\route\RouteFinder.class
 net\novatech\jbserver\world\World.class
 net\novatech\jbserver\scheduler\TaskHandler.class
+co\aikar\timings\TimingsHistory.class
 net\novatech\jbserver\utils\InterruptibleThread.class
 net\novatech\jbserver\config\Config.class
 net\novatech\jbserver\factory\Factory.class
+co\aikar\timings\TimingIdentifier$TimingGroup.class
 net\novatech\jbserver\network\bedrock\retranslator\impl\TextRetranslator.class
 net\novatech\jbserver\world\biomes\Biome.class
 net\novatech\jbserver\administration\ServerAdministrator.class
@@ -121,6 +135,7 @@ net\novatech\jbserver\material\MaterialData.class
 net\novatech\jbserver\world\WorldData.class
 net\novatech\jbserver\network\java\retranslator\impl\ChunkDataRetranslator.class
 net\novatech\jbserver\world\provider\impl\NPWorldWorldProvider.class
+co\aikar\timings\TimingsManager.class
 net\novatech\jbserver\world\Dimension.class
 net\novatech\jbserver\command\CommandMap.class
 net\novatech\jbserver\event\player\PlayerPacketReceiveEvent.class
@@ -133,6 +148,7 @@ net\novatech\jbserver\world\weather\Weather$WeatherType.class
 net\novatech\jbserver\event\Event.class
 net\novatech\jbserver\network\INetworkManager.class
 net\novatech\jbserver\utils\BedrockRuntimeIDS.class
+co\aikar\timings\TimingsHistoryEntry.class
 net\novatech\jbserver\event\player\PlayerLoginEvent.class
 net\novatech\jbserver\command\Command.class
 net\novatech\jbserver\player\PlayerInfo.class
@@ -147,6 +163,7 @@ net\novatech\jbserver\event\world\WorldEvent.class
 net\novatech\jbserver\network\bedrock\BedrockNetworkManager.class
 net\novatech\jbserver\network\protocol\impl\JBChatSendPacket.class
 net\novatech\jbserver\utils\BlockVector.class
+co\aikar\timings\TimingData.class
 net\novatech\jbserver\world\WorldType.class
 net\novatech\jbserver\manager\PathManager.class
 net\novatech\jbserver\world\chunk\Chunk.class
