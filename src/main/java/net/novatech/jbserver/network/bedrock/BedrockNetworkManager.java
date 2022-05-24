@@ -39,6 +39,8 @@ public class BedrockNetworkManager implements INetworkManager{
 	private String ip = "0.0.0.0";
 	private int port = 19132;
 	public static ExecutorService pool = Executors.newCachedThreadPool();
+	private ProtocolServer protocol = null;
+	
 	
 	public BedrockNetworkManager(Network network, int port) {
 		this.network = network;
@@ -48,9 +50,9 @@ public class BedrockNetworkManager implements INetworkManager{
 	
 	@Override
 	public void start() {
-		pool.execute(() -> {
+		//pool.execute(() -> {
 			
-			ProtocolServer protocol = new ProtocolServer(this.ip, this.port, GameEdition.BEDROCK);
+			protocol = new ProtocolServer(this.ip, this.port, GameEdition.BEDROCK);
 			protocol.setMaxConnections(getNetwork().getServer().getServerSettings().getMaxPlayerCount());
 			protocol.setServerListener(new ServerListener() {
 
@@ -115,12 +117,13 @@ public class BedrockNetworkManager implements INetworkManager{
 				}
 				
 			});
-		});
+		//});
 	}
 
 	@Override
 	public void stop() {
-		pool.shutdown();
+		protocol.close();
+		//pool.shutdown();
 	}
 	
 	public Network getNetwork() {
