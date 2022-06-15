@@ -13,7 +13,7 @@ import net.novatech.jbserver.world.chunk.Chunk;
 import net.novatech.jbserver.world.chunk.ChunkManager;
 import net.novatech.jbserver.world.chunk.ChunkVector;
 import net.novatech.jbserver.world.provider.BaseWorldProvider;
-import net.novatech.library.math.Vector3d;
+import net.novatech.library.math.vector.Vector3d;
 
 public class World {
 	

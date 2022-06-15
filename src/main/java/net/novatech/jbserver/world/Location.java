@@ -1,8 +1,8 @@
 package net.novatech.jbserver.world;
 
 import net.novatech.jbserver.material.MaterialBlock;
-import net.novatech.library.math.Rotation;
-import net.novatech.library.math.Vector3d;
+import net.novatech.library.math.motion.Rotation;
+import net.novatech.library.math.vector.Vector3d;
 import lombok.Getter;
 import lombok.Setter;
 

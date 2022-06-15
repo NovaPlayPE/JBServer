@@ -3,8 +3,8 @@ package net.novatech.jbserver.network.protocol.impl;
 import net.novatech.jbserver.entity.EntityType;
 import net.novatech.jbserver.network.protocol.JBPacket;
 import net.novatech.jbserver.network.protocol.JBPacketIdentifier;
-import net.novatech.library.math.Rotation;
-import net.novatech.library.math.Vector;
+import net.novatech.library.math.motion.Rotation;
+import net.novatech.library.math.vector.Vector;
 
 public class JBCreateEntityPacket extends JBPacket {
 	

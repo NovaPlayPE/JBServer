@@ -12,8 +12,8 @@ import net.novatech.jbserver.world.provider.WorldProviderManager;
 import net.novatech.jbserver.world.provider.impl.AnvilWorldProvider;
 import net.novatech.jbserver.world.provider.impl.LevelDBWorldProvider;
 import net.novatech.jbserver.world.provider.impl.NPWorldWorldProvider;
-import net.novatech.library.math.Vector3i;
-import net.novatech.library.math.Vector3d;
+import net.novatech.library.math.vector.Vector3d;
+import net.novatech.library.math.vector.Vector3i;
 
 import java.util.*;
 

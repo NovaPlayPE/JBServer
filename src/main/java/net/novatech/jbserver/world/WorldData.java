@@ -4,9 +4,8 @@ import java.util.*;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import net.novatech.library.math.Vector3d;
 import net.novatech.library.nbt.tags.*;
+import net.novatech.library.math.vector.Vector3d;
 import net.novatech.library.nbt.NBTIO;
 
 public class WorldData {

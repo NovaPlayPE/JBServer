@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.novatech.jbserver.material.Material;
 import net.novatech.jbserver.world.chunk.Chunk;
-import net.novatech.library.math.Vector3i;
+import net.novatech.library.math.vector.Vector3i;
 
 public class NormalTree extends Tree {
 	

@@ -1,7 +1,7 @@
 package net.novatech.jbserver.material;
 
-import net.novatech.library.math.Vector3d;
-import net.novatech.library.math.Vector3i;
+import net.novatech.library.math.vector.Vector3d;
+import net.novatech.library.math.vector.Vector3i;
 
 public enum Material {
 	

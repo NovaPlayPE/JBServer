@@ -6,7 +6,7 @@ import net.novatech.jbserver.material.MaterialBlock;
 import net.novatech.jbserver.world.biomes.Biome;
 import net.novatech.jbserver.world.chunk.Chunk;
 import net.novatech.jbserver.world.chunk.ChunkManager;
-import net.novatech.library.math.Vector3i;
+import net.novatech.library.math.vector.Vector3i;
 
 public abstract class Tree {
 	

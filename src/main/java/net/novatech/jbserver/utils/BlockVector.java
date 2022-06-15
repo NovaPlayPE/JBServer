@@ -1,7 +1,7 @@
 package net.novatech.jbserver.utils;
 
 import lombok.NonNull;
-import net.novatech.library.math.Vector3i;
+import net.novatech.library.math.vector.Vector3i;
 
 public class BlockVector extends Vector3i{
 

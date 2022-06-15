@@ -5,9 +5,8 @@ import net.novatech.jbserver.server.Server;
 import net.novatech.jbserver.utils.Utils;
 import net.novatech.jbserver.world.World;
 import net.novatech.jbserver.world.chunk.Chunk;
-import net.novatech.library.math.Rotation;
-import net.novatech.library.math.Vector3d;
-
+import net.novatech.library.math.motion.Rotation;
+import net.novatech.library.math.vector.Vector3d;
 import net.novatech.library.nbt.tags.*;
 
 public class EntityBuilder {

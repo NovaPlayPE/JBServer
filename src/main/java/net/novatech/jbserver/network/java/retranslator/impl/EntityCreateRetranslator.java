@@ -4,8 +4,8 @@ import net.novatech.jbprotocol.java.packets.play.clientbound.SpawnEntityPacket;
 import net.novatech.jbserver.network.java.retranslator.JavaRetranslator;
 import net.novatech.jbserver.network.protocol.JBPacket;
 import net.novatech.jbserver.network.protocol.impl.JBCreateEntityPacket;
-import net.novatech.library.math.Vector3d;
-import net.novatech.library.math.Vector3f;
+import net.novatech.library.math.vector.Vector3d;
+import net.novatech.library.math.vector.Vector3f;
 
 public class EntityCreateRetranslator extends JavaRetranslator<SpawnEntityPacket> {
 

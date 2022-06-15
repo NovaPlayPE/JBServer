@@ -3,7 +3,7 @@ package net.novatech.jbserver.world.chunk;
 import net.novatech.jbserver.entity.Entity;
 import net.novatech.jbserver.material.MaterialBlock;
 import net.novatech.jbserver.world.World;
-import net.novatech.library.math.Vector3i;
+import net.novatech.library.math.vector.Vector3i;
 import net.novatech.library.nbt.tags.*;
 
 import java.util.*;

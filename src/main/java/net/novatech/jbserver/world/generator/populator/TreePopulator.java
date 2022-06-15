@@ -11,7 +11,7 @@ import net.novatech.jbserver.world.chunk.ChunkManager;
 import net.novatech.jbserver.world.generator.Populator;
 import net.novatech.jbserver.world.tree.NormalTree;
 import net.novatech.jbserver.world.tree.Tree;
-import net.novatech.library.math.Vector3i;
+import net.novatech.library.math.vector.Vector3i;
 
 public class TreePopulator implements Populator{
 	

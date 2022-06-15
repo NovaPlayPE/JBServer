@@ -11,6 +11,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import net.novatech.library.math.*;
+import net.novatech.library.math.motion.Rotation;
+import net.novatech.library.math.vector.Vector3d;
 import net.novatech.library.nbt.tags.*;
 
 public class Utils {

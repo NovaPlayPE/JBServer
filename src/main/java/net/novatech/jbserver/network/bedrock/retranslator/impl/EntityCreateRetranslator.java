@@ -5,7 +5,7 @@ import net.novatech.jbprotocol.bedrock.packets.BedrockPacket;
 import net.novatech.jbserver.network.bedrock.retranslator.BedrockRetranslator;
 import net.novatech.jbserver.network.protocol.JBPacket;
 import net.novatech.jbserver.network.protocol.impl.JBCreateEntityPacket;
-import net.novatech.library.math.Vector3f;
+import net.novatech.library.math.vector.Vector3f;
 
 public class EntityCreateRetranslator extends BedrockRetranslator<AddActorPacket> {
 

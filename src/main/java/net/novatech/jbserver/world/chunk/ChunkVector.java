@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import net.novatech.library.math.*;
+import net.novatech.library.math.vector.Vector3d;
+import net.novatech.library.math.vector.Vector3i;
 
 public class ChunkVector{
 	

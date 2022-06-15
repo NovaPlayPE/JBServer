@@ -13,7 +13,7 @@ import net.novatech.jbserver.network.bedrock.retranslator.BedrockRetranslatorSec
 import net.novatech.jbserver.network.protocol.JBPacket;
 import net.novatech.jbserver.player.Player;
 import net.novatech.jbserver.player.bedrock.BedrockPlayer;
-import net.novatech.library.math.Vector3d;
+import net.novatech.library.math.vector.Vector3d;
 
 public class JBBedrockSession implements NetworkSession {
 	

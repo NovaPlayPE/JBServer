@@ -1,7 +1,7 @@
 package net.novatech.jbserver.material;
 
 import lombok.Getter;
-import net.novatech.library.math.Vector3i;
+import net.novatech.library.math.vector.Vector3i;
 
 public class MaterialBlock {
 	
